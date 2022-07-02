@@ -1,6 +1,6 @@
 {
   "name": "blog",
-  "base":"/blog/",
+  "base": "/blog/",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -10,5 +10,8 @@
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs"
+  },
+  "dependencies": {
+    "vuepress-theme-reco": "^2.0.0-beta.19"
   }
 }

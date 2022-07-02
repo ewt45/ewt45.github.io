@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-  </head>
-  <body>
-    <div id="app"></div>
-  <script type="module">
+<head>
+	<script>
+		(function() {
+			const userMode = localStorage.getItem('vuepress-reco-color-scheme');
+			const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+			if (userMode === 'dark' || (typeof userMode !== 'string' && systemDarkMode)) {
+				document.documentElement.classList.toggle('dark', true);
+			}
+		})();
+	</script>
+</head>
+<body>
+	<div id="app"></div>
+<script type="module">
 import '@vuepress/client/app'
 </script>
 </body>

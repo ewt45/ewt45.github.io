@@ -1,28 +1,10 @@
 import {
   setupDevtoolsPlugin
-} from "./chunk-WMZTZZNO.js";
-import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  h,
-  inject,
-  nextTick,
-  onActivated,
-  onDeactivated,
-  onUnmounted,
-  provide,
-  reactive,
-  ref,
-  shallowRef,
-  unref,
-  watch,
-  watchEffect
-} from "./chunk-ZT2TARZU.js";
-import "./chunk-VNKCJBW6.js";
-import "./chunk-FEFTYQ2P.js";
+} from "./chunk-6UIC4QU6.js";
+import "./chunk-YGMCJW2Q.js";
 
 // node_modules/vue-router/dist/vue-router.esm-bundler.js
+import { getCurrentInstance, inject, onUnmounted, onDeactivated, onActivated, computed, unref, watchEffect, defineComponent, reactive, h, provide, ref, watch, shallowRef, nextTick } from "vue";
 var hasSymbol = typeof Symbol === "function" && typeof Symbol.toStringTag === "symbol";
 var PolySymbol = (name) => hasSymbol ? Symbol(true ? "[vue-router]: " + name : name) : (true ? "[vue-router]: " : "_vr_") + name;
 var matchedRouteKey = PolySymbol(true ? "router view location matched" : "rvlm");
