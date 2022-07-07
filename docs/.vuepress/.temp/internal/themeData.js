@@ -1,4 +1,4 @@
-export const themeData = JSON.parse("{\"sidebar\":{\"/blogs/\":[\"/blogs/blog1\",\"/blogs/blog2\"]},\"subSidebar\":\"auto\",\"navbar\":[{\"text\":\"导航1\",\"link\":\"/blogs/blog2.html\",\"icon\":\"reco-home\"},{\"text\":\"导航2\",\"link\":\"/\",\"icon\":\"reco-document\"}]}")
+export const themeData = JSON.parse("{\"sidebar\":{\"/blogs/\":[\"/blogs/blog1\",\"/blogs/blog2\"]},\"subSidebar\":\"auto\",\"navbar\":[{\"text\":\"首页\",\"link\":\"/\",\"icon\":\"reco-home\"}]}")
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.accept()

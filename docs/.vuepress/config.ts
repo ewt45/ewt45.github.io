@@ -23,9 +23,7 @@ export default defineUserConfig({
     subSidebar: 'auto',
     //顶部导航栏
     navbar: [
-      { text: '导航1', link: '/blogs/blog2.html', icon: 'reco-home' },
-      { text: '导航2', link: '/', icon: 'reco-document' },
-
+      { text: '首页', link: '/', icon: 'reco-home' },
     ],
 
   }),
