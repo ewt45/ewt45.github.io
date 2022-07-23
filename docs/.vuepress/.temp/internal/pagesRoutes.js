@@ -1,6 +1,7 @@
 export const pagesRoutes = [
   ["v-8daa1a0e","/",{"title":""},["/index.html","/index.md"]],
   ["v-7cc524c2","/blogs/adblockplus/",{"title":""},["/blogs/adblockplus/index.html","/blogs/adblockplus/index.md"]],
+  ["v-08f501e4","/blogs/exagearInitContainer/",{"title":"解决exagear内置容器，必须点开一次环境设置才能启动环境的问题"},["/blogs/exagearInitContainer/index.html","/blogs/exagearInitContainer/index.md"]],
   ["v-1b8232eb","/blogs/cundanglujing/",{"title":"将植物大战僵尸安卓版游戏存档路径改到外部存储下（以谷歌free版为例）"},["/blogs/cundanglujing/index.html","/blogs/存档路径/","/blogs/%E5%AD%98%E6%A1%A3%E8%B7%AF%E5%BE%84/","/blogs/存档路径/index.md","/blogs/%E5%AD%98%E6%A1%A3%E8%B7%AF%E5%BE%84/index.md"]],
   ["v-c8b40104","/blogs/danmupingbi/",{"title":"屏蔽斗鱼直播间的重复弹幕"},["/blogs/danmupingbi/index.html","/blogs/弹幕屏蔽/","/blogs/%E5%BC%B9%E5%B9%95%E5%B1%8F%E8%94%BD/","/blogs/弹幕屏蔽/index.md","/blogs/%E5%BC%B9%E5%B9%95%E5%B1%8F%E8%94%BD/index.md"]],
   ["v-3fb33734","/nonBlog/marioKartTour/",{"title":"马力欧赛车：巡回赛图鉴"},["/nonBlog/marioKartTour/index.html","/nonBlog/marioKartTour/index.md"]],

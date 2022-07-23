@@ -3,6 +3,8 @@ export const pagesData = {
   "v-8daa1a0e": () => import(/* webpackChunkName: "v-8daa1a0e" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/index.html.js").then(({ data }) => data),
   // path: /blogs/adblockplus/
   "v-7cc524c2": () => import(/* webpackChunkName: "v-7cc524c2" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/blogs/adblockplus/index.html.js").then(({ data }) => data),
+  // path: /blogs/exagearInitContainer/
+  "v-08f501e4": () => import(/* webpackChunkName: "v-08f501e4" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/blogs/exagearInitContainer/index.html.js").then(({ data }) => data),
   // path: /blogs/cundanglujing/
   "v-1b8232eb": () => import(/* webpackChunkName: "v-1b8232eb" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/blogs/存档路径/index.html.js").then(({ data }) => data),
   // path: /blogs/danmupingbi/
