@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-7cc524c2","path":"/blogs/adblockplus/","title":"","lang":"zh-CN","frontmatter":{},"excerpt":"","headers":[],"git":{"createdTime":1658556184000,"updatedTime":1658556184000,"contributors":[{"name":"ewt45","email":"79033456+ewt45@users.noreply.github.com","commits":1}]},"filePathRelative":"blogs/adblockplus/index.md"}');export{e as data};

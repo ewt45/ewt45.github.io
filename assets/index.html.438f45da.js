@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as o,a as d}from"./app.3039e8e6.js";const n={},r=d("p",null,"#\u5C4F\u853Dreddit\u7684promoted\u5E16\u5B50 div>div>div.promotedlink",-1),_=[r];function c(i,s){return t(),o("div",null,_)}var l=e(n,[["render",c],["__file","index.html.vue"]]);export{l as default};

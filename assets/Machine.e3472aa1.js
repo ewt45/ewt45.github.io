@@ -1,0 +1,1 @@
+import{_ as t,o,c as _,a,t as c,F as n,$ as p,a0 as r}from"./app.3039e8e6.js";const i=e=>(p("data-v-3afb4e85"),e=e(),r(),e),l=i(()=>a("div",null,"\u8D5B\u8F66.vue",-1)),d={__name:"Machine",props:{json:Array},setup(e){const s=e;return(u,v)=>(o(),_(n,null,[l,a("div",null,c(s.json),1)],64))}};var f=t(d,[["__scopeId","data-v-3afb4e85"],["__file","Machine.vue"]]);export{f as default};
