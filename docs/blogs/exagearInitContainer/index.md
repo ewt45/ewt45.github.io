@@ -144,7 +144,7 @@
 ## 解决实操
 本节和 解决原理 后半部分大致相同，省略了解释原理的部分。\
 整体思路：分两步，新建一个类用于创建SharePref文件，然后在主Activity中调用这个类。
-1. 打开mt管理器的dex编辑器++，在浏览界面长按任意路径，导入ExagearPrefs.smali。该smali用于生成内置环境的设置信息，说一下几个常用的：
+1. 打开mt管理器的dex编辑器++，在浏览界面长按任意路径，导入[ExagearPrefs.smali](https://pan.baidu.com/s/12SXyCLwy80CP3c-Py0XVEw?pwd=96qs )。该smali用于生成内置环境的设置信息，说一下几个常用的：
  - 58行是分辨率，默认为default，或者其他支持的分辨率，宽高用逗号隔开
  - 65行是色深
  - 72行是环境名称
