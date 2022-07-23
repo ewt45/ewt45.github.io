@@ -155,7 +155,14 @@ tags:
 ## 解决实操
 本节和 解决原理 后半部分大致相同，省略了解释原理的部分。\
 整体思路：分两步，新建一个类用于创建SharePref文件，然后在主Activity中调用这个类。
-1. 打开mt管理器的dex编辑器++，在浏览界面长按任意路径，导入[ExagearPrefs.smali](https://pan.baidu.com/s/12SXyCLwy80CP3c-Py0XVEw?pwd=96qs )。该smali用于生成内置环境的设置信息，说一下几个常用的：
+1. 打开mt管理器的dex编辑器++，在浏览界面长按任意路径，导入[ExagearPrefs.smali](https://pan.baidu.com/s/12SXyCLwy80CP3c-Py0XVEw?pwd=96qs )。该smali用于生成内置环境的设置信息：
+
+    ::: warning
+    目前的配置还不够全，有些没配置的选项，比如图形渲染等，正在完善中。。。
+    :::
+
+ - （必看！！）25行的com.eltechs.zc这个包名需要根据实际情况修改，否则无法生效。在mt的dex编辑器++中搜索`CONTAINER_CONFIG_FILE_KEY_PREFIX`，查看其对应的字符串前半部分的包名，以这个包名为准。如图中的为`com.eltechs.zc`,那么25行的字符串就应该是`com.eltechs.zc.CONTAINER_CONFIG_1`\
+  ![图5](./5.png)
  - 58行是分辨率，默认为default，或者其他支持的分辨率，宽高用逗号隔开
  - 65行是色深
  - 72行是环境名称
@@ -177,3 +184,10 @@ tags:
 ## 总结
 - 解决办法就是手动添加SharePreference文件。
 - 在测试过程中，发现只要生成sharePref文件并启动一次之后，就算把sharePref删掉也一样能启动。这说明exagear读取sharePref之后又生成了其他文件，第二次往后启动都依靠这个其他文件来启动了。
+- 考虑给外面加个try catch，这样方便获取报错信息？
+- 想法：1. 将xml放到apk中，然后移动到对应位置。2. 干脆让做修改版的人自己去提取一份xml出来
+- 如果有内置多个环境的需求，也可以通过移动文件的写法解决。
+
+## 更新历史
+- 发现sharePref的文件名前半部分的包名不是固定的，需要从GuestContainerConfig那看一下
+- 发现自定义的sharePref文件设置项好像不够全面，导致依旧闪退。
