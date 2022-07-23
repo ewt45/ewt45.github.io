@@ -1,4 +1,4 @@
-export const themeData = JSON.parse("{\"sidebar\":{\"/blogs/\":[\"/blogs/blog1\",\"/blogs/blog2\"]},\"subSidebar\":\"auto\",\"navbar\":[{\"text\":\"首页\",\"link\":\"/\",\"icon\":\"reco-home\"}]}")
+export const themeData = JSON.parse("{\"subSidebar\":\"auto\",\"navbar\":[{\"text\":\"首页\",\"link\":\"/\",\"icon\":\"reco-home\"}],\"componentsDir\":\"./docs/.vuepress/components\"}")
 
 if (import.meta.webpackHot) {
   import.meta.webpackHot.accept()

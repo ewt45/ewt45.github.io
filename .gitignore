@@ -1,3 +1,5 @@
-node_modules/
 .temp
 .cache
+/docs/nonBlog
+/docs/.vuepress/public/mkt
+node_modules

@@ -1,9 +1,12 @@
 export const pagesRoutes = [
   ["v-8daa1a0e","/",{"title":""},["/index.html","/index.md"]],
+  ["v-7cc524c2","/blogs/adblockplus/",{"title":""},["/blogs/adblockplus/index.html","/blogs/adblockplus/index.md"]],
   ["v-1b8232eb","/blogs/cundanglujing/",{"title":"将植物大战僵尸安卓版游戏存档路径改到外部存储下（以谷歌free版为例）"},["/blogs/cundanglujing/index.html","/blogs/存档路径/","/blogs/%E5%AD%98%E6%A1%A3%E8%B7%AF%E5%BE%84/","/blogs/存档路径/index.md","/blogs/%E5%AD%98%E6%A1%A3%E8%B7%AF%E5%BE%84/index.md"]],
-  ["v-c8b40104","/blogs/%E5%BC%B9%E5%B9%95%E5%B1%8F%E8%94%BD/",{"title":"屏蔽斗鱼直播间的重复弹幕"},["/blogs/弹幕屏蔽/","/blogs/%E5%BC%B9%E5%B9%95%E5%B1%8F%E8%94%BD/index.html","/blogs/弹幕屏蔽/index.md","/blogs/%E5%BC%B9%E5%B9%95%E5%B1%8F%E8%94%BD/index.md"]],
+  ["v-c8b40104","/blogs/danmupingbi/",{"title":"屏蔽斗鱼直播间的重复弹幕"},["/blogs/danmupingbi/index.html","/blogs/弹幕屏蔽/","/blogs/%E5%BC%B9%E5%B9%95%E5%B1%8F%E8%94%BD/","/blogs/弹幕屏蔽/index.md","/blogs/%E5%BC%B9%E5%B9%95%E5%B1%8F%E8%94%BD/index.md"]],
+  ["v-3fb33734","/nonBlog/marioKartTour/",{"title":"马力欧赛车：巡回赛图鉴"},["/nonBlog/marioKartTour/index.html","/nonBlog/marioKartTour/index.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
   ["v-539d2ec6","/categories/jishu/1/",{"title":""},["/categories/jishu/1/index.html"]],
+  ["v-a90c2f92","/categories/youxi/1/",{"title":""},["/categories/youxi/1/index.html"]],
   ["v-6d4b5dbe","/tags/youhou/1/",{"title":""},["/tags/youhou/1/index.html"]],
   ["v-6b013903","/tags/JavaScript/1/",{"title":""},["/tags/JavaScript/1/index.html"]],
   ["v-de75cc5e","/tags/danmu/1/",{"title":""},["/tags/danmu/1/index.html"]],
@@ -13,6 +16,7 @@ export const pagesRoutes = [
   ["v-0b7ef5e6","/tags/smali/1/",{"title":""},["/tags/smali/1/index.html"]],
   ["v-1142155b","/tags/android/1/",{"title":""},["/tags/android/1/index.html"]],
   ["v-43a76bee","/tags/youxicundang/1/",{"title":""},["/tags/youxicundang/1/index.html"]],
+  ["v-a52b191e","/tags/maliousaiche%EF%BC%9Axunhuisai/1/",{"title":""},["/tags/maliousaiche：xunhuisai/1/","/tags/maliousaiche%EF%BC%9Axunhuisai/1/index.html"]],
   ["v-01560935","/timeline/",{"title":""},["/timeline/index.html"]],
   ["v-03d52fd3","/posts/1/",{"title":""},["/posts/1/index.html"]],
 ]

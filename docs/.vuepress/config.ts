@@ -13,11 +13,11 @@ export default defineUserConfig({
     //   '/blogs/': ['/blogs/blog1', '/blogs/blog2']
     // },
     //vuepress2 不知道怎么用的左侧边栏
-    sidebar:  {
-      '/blogs/':[
-        '/blogs/blog1','/blogs/blog2'
-      ]
-    },
+    // sidebar:  {
+    //   '/blogs/':[
+    //     '/blogs/blog1','/blogs/blog2'
+    //   ]
+    // },
     // type: 'blog',
     //reco1 右侧栏，当前文章的章节
     subSidebar: 'auto',
@@ -25,6 +25,7 @@ export default defineUserConfig({
     navbar: [
       { text: '首页', link: '/', icon: 'reco-home' },
     ],
+    componentsDir:'./docs/.vuepress/components',
 
   }),
 

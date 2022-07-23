@@ -1,14 +1,20 @@
 export const pagesData = {
   // path: /
   "v-8daa1a0e": () => import(/* webpackChunkName: "v-8daa1a0e" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/index.html.js").then(({ data }) => data),
+  // path: /blogs/adblockplus/
+  "v-7cc524c2": () => import(/* webpackChunkName: "v-7cc524c2" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/blogs/adblockplus/index.html.js").then(({ data }) => data),
   // path: /blogs/cundanglujing/
   "v-1b8232eb": () => import(/* webpackChunkName: "v-1b8232eb" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/blogs/存档路径/index.html.js").then(({ data }) => data),
-  // path: /blogs/%E5%BC%B9%E5%B9%95%E5%B1%8F%E8%94%BD/
+  // path: /blogs/danmupingbi/
   "v-c8b40104": () => import(/* webpackChunkName: "v-c8b40104" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/blogs/弹幕屏蔽/index.html.js").then(({ data }) => data),
+  // path: /nonBlog/marioKartTour/
+  "v-3fb33734": () => import(/* webpackChunkName: "v-3fb33734" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/nonBlog/marioKartTour/index.html.js").then(({ data }) => data),
   // path: /404.html
   "v-3706649a": () => import(/* webpackChunkName: "v-3706649a" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/404.html.js").then(({ data }) => data),
   // path: /categories/jishu/1/
   "v-539d2ec6": () => import(/* webpackChunkName: "v-539d2ec6" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/categories/jishu/1/index.html.js").then(({ data }) => data),
+  // path: /categories/youxi/1/
+  "v-a90c2f92": () => import(/* webpackChunkName: "v-a90c2f92" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/categories/youxi/1/index.html.js").then(({ data }) => data),
   // path: /tags/youhou/1/
   "v-6d4b5dbe": () => import(/* webpackChunkName: "v-6d4b5dbe" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/tags/youhou/1/index.html.js").then(({ data }) => data),
   // path: /tags/JavaScript/1/
@@ -27,6 +33,8 @@ export const pagesData = {
   "v-1142155b": () => import(/* webpackChunkName: "v-1142155b" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/tags/android/1/index.html.js").then(({ data }) => data),
   // path: /tags/youxicundang/1/
   "v-43a76bee": () => import(/* webpackChunkName: "v-43a76bee" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/tags/youxicundang/1/index.html.js").then(({ data }) => data),
+  // path: /tags/maliousaiche%EF%BC%9Axunhuisai/1/
+  "v-a52b191e": () => import(/* webpackChunkName: "v-a52b191e" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/tags/maliousaiche：xunhuisai/1/index.html.js").then(({ data }) => data),
   // path: /timeline/
   "v-01560935": () => import(/* webpackChunkName: "v-01560935" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/timeline/index.html.js").then(({ data }) => data),
   // path: /posts/1/
