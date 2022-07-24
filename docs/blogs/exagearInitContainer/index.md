@@ -11,6 +11,10 @@ tags:
 
 # 解决exagear内置容器，必须点开一次环境设置才能启动环境的问题
 
+::: tip 
+本文前半部分为原理，篇幅较长，可以略过，直接看[解决实操](./#解决实操)部分即可
+:::
+
 ## 问题描述
 - 为模拟器添加内置容器，即安装解压后，环境那一页会自动出现一个环境，可以用来制作自定义环境（比如很早之前有人就有人做过的三个内置环境分别对应三个d3d版本。但是这样做会有一个问题，就是直接点环境或者快捷方式启动会闪退，必须要进入一次环境设置（也不需要修改什么选项）。
 - 点击添加环境手动创建的环境就没有这个问题。
@@ -66,7 +70,7 @@ tags:
 
 
 ## 解决原理
-- 缺失的函数为loadDefaults()，其作用为创建SharePreference文件，记录当前容器的设置信息，在创建容器时被调用。所以有两种解决方法：
+- 缺失的函数为loadDefaults()，其作用为创建SharePreference文件，记录当前容器的设置信息，在创建容器时被调用。所以有两种解决方法:
     - 在初次启动时调用创建环境的代码，创建环境，这样函数就会被执行。
     - 自己写一个sharePref
 
@@ -74,120 +78,74 @@ tags:
     - 在代码中调用原生方法写入sharepref，
     - 也可以提前写好xml文件放入apk，然后再代码中移动文件到对应目录。
 
-- 我这里选择前者。其实感觉后者更方便修改一点，因为有时候需要自定义按键和分辨率。
- 1. 整体思路
-
-
-    ::: tip 整体思路
-    - 编写java代码，测试通过后再转为smali，加入dex中
-    - 新建一个类，其包含一个静态方法用于创建SharePref文件，需要传入参数context。
-    - 在exagear主Activity里调用该方法，确保程序启动时即可执行。
-    - 为什么要在Activity中，而不是随便一个类中调用？因为要获取SharePref文件，所以需要用到context，而context需要从activity中获得。
-    :::
-
- 2. 使用AndroidStudio编写代码，创建类ExagearPrefs。文件格式照着GuestContainerConfig写就行。最后写入文件用的是apply同步写入方法，可能造成anr，如果出现问题可以尝试换成commit异步写入。
-    ```java
-    package com.example.datainsert;
-
-    import android.content.Context;
-    import android.content.SharedPreferences;
-    import android.util.Log;
-
-    public class ExagearPrefs {
-        static public void setSP(Context ctx){
-            SharedPreferences sp = ctx.getSharedPreferences("com.eltechs.zc.CONTAINER_CONFIG_1", Context.MODE_PRIVATE);
-            //如果没获取到sp就创建一个
-            if(sp.getString("NAME","NAME_NOT_FOUND").equals("NAME_NOT_FOUND")){
-                SharedPreferences.Editor editor = sp.edit();
-    //        Log.d("ExagearPrefs", "setSP: "+sp.getString("NAME","NAME_NOT_FOUND"));
-                editor.putString("SCREEN_SIZE","1024,768");
-                editor.putString("SCREEN_COLOR_DEPTH","32");
-                editor.putString("NAME","预设容器");
-                editor.putString("RUN_ARGUMENTS","");
-                editor.putString("CONTROLS","default");
-                editor.putBoolean("HIDE_TASKBAR_SHORTCUT",false);
-                editor.putBoolean("DEFAULT_CONTROLS_NOT_SHORTCUT",false);
-                editor.putBoolean("DEFAULT_RESOLUTION_NOT_SHORTCUT",false);
-                editor.putString("STARTUP_ACTIONS","");
-                editor.putString("RUN_GUIDE","");
-                editor.putBoolean("RUN_GUIDE_SHOWN",false);
-                editor.putString("CREATED_BY","补补23456"); //用这个检测存不存在吧
-
-                editor.apply(); //同步写入，commit是异步写入
-            }else{
-                Log.d("ExagearPrefs", "setSP: sp已存在，跳过写入");
-            }
-
-        }
-    }
-    ```
- 3. 在主Activity中调用：`ExagearPrefs.setSP(getApplicationContext());`。
- 4. 构建项目并在虚拟机中运行，发现可以正常创建SharePref文件。
-    ![图2](./2.png)
-
-
- 5. 使用插件将java转为smali，并导入exagear的dex。\
- ExagearPrefs类的导入：进入mt管理器的dex编辑器++，在浏览界面随便长按一个路径然后点击导入，选择smali文件导入。
-    ![图3](./3.png)
- 6. 调用ExagearPrefs代码的导入：将MainActivity也转为smali，找到调用ExgearPrefs的那一行代码。
- **注意这个代码不能直接用。第一行代码为获取`Lcom/example/datainsert/MainActivity`的Context，而在Exagear中应该获取它自己的某个Activity的context，所以我们现在需要将`Lcom/example/datainsert/MainActivity`修改为Exagear某个类的路径，然后放入这个类的OnCreate方法中（Activity生命周期从OnCreate开始）。要求为：必须是Activity，而且在Exagear启动时越早被调用越好。**
-    ```smali
-    #主Activity中调用函数的代码
-    invoke-virtual {p0}, Lcom/example/datainsert/MainActivity;->getApplicationContext()Landroid/content/Context;
-
-    move-result-object v1
-
-    invoke-static {v1}, Lcom/example/datainsert/ExagearPrefs;->setSP(Landroid/content/Context;)V
-    ```
-7. 寻找我们需要的Activity的方法：（以暗黑直装版为例）打开mt管理器左侧栏-Activity记录，然后启动Exagear，发现第一个启动的类为EDStartupActivity，决定就是它了。所以将第一行的代码对应类名改为Lcom/eltechs/ed/activities/EDStartUpActivity，然后放入EDStartUpActivity的initialiseStartupActions()方法的结尾（恩这个类里没有OnCreate，观察它仅有的几个函数就这个最像初始化函数了）
-    ```smali
-    #放入EDStartupActivity中initialiseStartupActions()结尾的代码
-    invoke-virtual {p0}, Lcom/eltechs/ed/activities/EDStartupActivity;->getApplicationContext()Landroid/content/Context;
-
-    move-result-object v1
-
-    invoke-static {v1}, Lcom/example/datainsert/ExagearPrefs;->setSP(Landroid/content/Context;)V
-    ```
-    ![图4](./4.png)
-
-8. 重新编译dex，apk签名并重装，打开测试，发现不用点开设置也能启动内置环境了，成功。
+- ~~我这里选择前者。其实感觉后者更方便修改一点，因为有时候需要自定义按键和分辨率。~~ 已经换成后者了。想看前者的解决方案请点[这里](./detailed)。
+- 略。待填充。
 
 ## 解决实操
-本节和 解决原理 后半部分大致相同，省略了解释原理的部分。\
-整体思路：分两步，新建一个类用于创建SharePref文件，然后在主Activity中调用这个类。
-1. 打开mt管理器的dex编辑器++，在浏览界面长按任意路径，导入[ExagearPrefs.smali](https://pan.baidu.com/s/12SXyCLwy80CP3c-Py0XVEw?pwd=96qs )。该smali用于生成内置环境的设置信息：
+本节和 解决原理 后半部分大致相同，省略了解释原理的部分。
+
+::: tip 整体思路
+1. 在apk文件的/assets/containerConfig/目录下，放入内置容器的设置文件（xml格式）。只要模拟器能读取到这个文件，初次启动就不会闪退。
+2. 自己写一个函数，用于将apk里的容器设置信息xml文件移动到对应位置以供模拟器识别。直接用我写好的函数即可：[传送门](https://pan.baidu.com/s/1mDveJsMRVcKkRh9YlfUt8g?pwd=eppn)
+3. 在主Activity中调用这个函数
+
+- 后两条需要修改dex。 
+:::
+
+1. 将xml文件放入apk
 
     ::: warning
-    目前的配置还不够全，有些没配置的选项，比如图形渲染等，正在完善中。。。
+    如果xml放入apk后没有被移动到对应位置，请仔细检查xml的名字、在apk中路径是否正确
     :::
 
- - （必看！！）25行的com.eltechs.zc这个包名需要根据实际情况修改，否则无法生效。在mt的dex编辑器++中搜索`CONTAINER_CONFIG_FILE_KEY_PREFIX`，查看其对应的字符串前半部分的包名，以这个包名为准。如图中的为`com.eltechs.zc`,那么25行的字符串就应该是`com.eltechs.zc.CONTAINER_CONFIG_1`\
-  ![图5](./5.png)
- - 58行是分辨率，默认为default，或者其他支持的分辨率，宽高用逗号隔开
- - 65行是色深
- - 72行是环境名称
- - 86行是操作模式，默认为default，或者com.eltechs.ed.controls包里对应操作的类中getId()返回的字符串
-2. 使用mt管理器左侧栏的activity记录功能，查看Exagear启动时第一个启动的Activity名字。以图中为例，第一个打开的为com.eltechs.ed.activities.EDStartupActivity
-    ![图4](./4.png)
-3. 将下面三行代码添加到刚才找到的Activity的OnCreate方法的末尾处。
- - 注意第一行代码中的com/eltechs/ed/activities/EDStartupActivity改成刚才找到的Activity名字，点.换成斜线/。
- - 我找的这个EDStartupActivity没有OnCreate，只有一个initialiseStartupActions，把它当OnCreate就行。
+    - 获取xml\
+    这里提供一份来自j改fix39的xml[传送门]()，但是可能不通用。\
+    **更好的方法**是从`/data/data/包名/shared_prefs/`目录下提取一份你的模拟器版本对应的xml，此目录需要root，可借助VMOS等工具，这里不过多介绍。
+    - 将提取出的xml移入apk演示gif：\
+    ![gif1](./6.gif)
 
+    需要注意的有：
+    - 在apk中存放路径：`apk/assets/containerConfig/xxx.xml`。
+    - 文件名\
+    不同包名的模拟器，xml文件名也不同。请去`/data/data/包名/shared_prefs/`目录下查看xml具体文件名，或者在dex中搜索`CONTAINER_CONFIG_FILE_KEY_PREFIX`。
+    - 文件个数\
+    如果内置多个环境，那么应该创建多个xml放入containerConfig中，并且文件命名\*CONFIG_2.xml、\*CONFIG_3.xml...
+    - 文件内容\
+    不同版本的模拟器，xml中的内容可能会有不同，应以实际情况为准。
+
+2. 打开mt管理器的dex编辑器++，在浏览界面长按任意路径，导入[ExagearPrefs.smali](https://pan.baidu.com/s/1mDveJsMRVcKkRh9YlfUt8g?pwd=eppn )。该smali包含移动xml文件的函数。
+
+3. 使用mt管理器左侧栏的activity记录功能，查看Exagear启动时调用的Activity名字。以图中为例，第一个调用的为`com.eltechs.ed.activities.EDStartupActivity`，第二个调用的为`com.eltechs.ed.activities.EDMainActivity`。这里采用第一个。\
+![图4](./4.png)
+3. 将下面三行代码添加到刚才找到的Activity的`OnCreate`方法的末尾处。
+
+    ::: tip 注意事项
+    - 注意第一行代码中的`com/eltechs/ed/activities/EDStartupActivity`改成刚才找到的Activity名字，点.换成斜线/。
+    - 尽量放在OnCreate方法的末尾，因为放中间可能会无意中篡改了v1寄存器的值。
+    - 我找的这个EDStartupActivity没有`OnCreate`，只有一个`initialiseStartupActions`，把它当OnCreate就行。
+    :::
+
+    ```smali
     invoke-virtual {p0}, Lcom/eltechs/ed/activities/EDStartupActivity;->getApplicationContext()Landroid/content/Context;
 
     move-result-object v1
 
     invoke-static {v1}, Lcom/example/datainsert/ExagearPrefs;->setSP(Landroid/content/Context;)V
+    ```
 
-4. 编译，重装，测试。
+5. 编译，重装，测试。
 
 ## 总结
 - 解决办法就是手动添加SharePreference文件。
 - 在测试过程中，发现只要生成sharePref文件并启动一次之后，就算把sharePref删掉也一样能启动。这说明exagear读取sharePref之后又生成了其他文件，第二次往后启动都依靠这个其他文件来启动了。
-- 考虑给外面加个try catch，这样方便获取报错信息？
-- 想法：1. 将xml放到apk中，然后移动到对应位置。2. 干脆让做修改版的人自己去提取一份xml出来
-- 如果有内置多个环境的需求，也可以通过移动文件的写法解决。
 
 ## 更新历史
-- 发现sharePref的文件名前半部分的包名不是固定的，需要从GuestContainerConfig那看一下
-- 发现自定义的sharePref文件设置项好像不够全面，导致依旧闪退。
+1. 发现sharePref的文件名前半部分的包名不是固定的，需要从GuestContainerConfig那看一下
+2. 发现自定义的sharePref文件设置项好像不够全面，导致依旧闪退。
+3. 干脆重写代码，改成移动现有xml文件到对应目录下。原方法的说明移入[分支页面](./detailed)下
+
+<style scoped>
+img{
+  max-height: 300px;
+}
+</style>
