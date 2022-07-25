@@ -141,10 +141,11 @@ tags:
  获取xml：从`/data/data/包名/shared_prefs`目录下获取容器设置xml。命名格式应为`包名.CONTAINER_CONFIG_序号.xml`。包名一般对应模拟器包名，序号从1开始。\
  放入apk：路径为/apk/assets/containerConfig/xxx.xml。可以参考演示：
  ![演示](./6.gif)
+<!-- position= "absolute" -->
+ <video  height="300" controls="controls">
+    <source  src="/vids/exagearInitContainer/1.mp4" type="video/mp4">
+ </video>
 
- <video src="/vids/1.mp4" position= "absolute" width="100%" height="100%" controls="controls">视频</video>
-
- <video src="res/2.mp4" position= "absolute" height="100%" controls="controls">视频</video>
 
 4. 在主Activity中调用：`ExagearPrefs.setSP(getApplicationContext());`。
 5. 构建项目并在虚拟机中运行，发现可以正常创建SharePref文件。\
