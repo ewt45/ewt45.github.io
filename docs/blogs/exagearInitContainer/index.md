@@ -79,7 +79,99 @@ tags:
     - 也可以提前写好xml文件放入apk，然后再代码中移动文件到对应目录。
 
 - ~~我这里选择前者。其实感觉后者更方便修改一点，因为有时候需要自定义按键和分辨率。~~ 已经换成后者了。想看前者的解决方案请点[这里](./detailed)。
-- 略。待填充。
+
+1. 整体思路
+
+    ::: tip 整体思路
+    - 编写java代码，测试通过后再转为smali，加入dex中
+    - 新建一个类，其包含一个静态方法用于移动sharePref文件，从apk中移动到对应目录，需要传入参数context。
+    - 在exagear主Activity里调用该方法，确保程序启动时即可执行。
+    - 为什么要在Activity中，而不是随便一个类中调用？因为要获取SharePref文件，所以需要用到context，而context需要从activity中获得。
+    :::
+
+2. 使用AndroidStudio编写代码，创建类ExagearPrefs。添加setSP方法，通过传入的context，获取apk内assets/containerConfig目录下的全部sharePref文件，并将其移动到应用能识别的位置/包名/shared_prefs目录下。
+
+    ::: details 点击查看代码
+    ```java
+    static public void setSP(Context ctx) {
+
+        try {
+            String[] configs = ctx.getAssets().list("containerConfig");
+
+            if (configs.length == 0)
+                throw new Exception("没有环境配置文件");
+
+            //创建share_prefs文件夹
+            File dir = new File(ctx.getApplicationInfo().dataDir + "/shared_prefs");
+            if (!dir.exists()) {
+                boolean b = dir.mkdir();
+                assert b;
+            }
+            ;
+            //将文件写入到存档路径中
+            for (String datName : configs) {
+                Log.i("getAssets().list", datName);
+
+                InputStream is = ctx.getAssets().open("containerConfig/" + datName);      //源文件输入流
+                File newFile = new File(dir.getAbsolutePath() + "/" + datName); //创建新文件
+
+                //如果没有，创建该文件
+                if (newFile.createNewFile()) {
+                    FileOutputStream fos = new FileOutputStream(newFile);                   //新文件输出流
+                    int len = -1;
+                    byte[] buffer = new byte[4096];
+                    while ((len = is.read(buffer)) != -1) {
+                        fos.write(buffer, 0, len);
+                    }
+                    fos.close();
+                }
+                is.close();
+                //Log.i("dataDirectory",getFilesDir().getAbsolutePath()); ///data/user/0/com.example.datainsert/files
+            }
+            Log.d("ExagearPrefs", "setSP: 现在的sp文件夹：" + Arrays.toString(dir.list()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("Exagear", "setSP: 出错：" + e.getMessage());
+        }
+    }
+    ```
+    :::
+
+3. 获取xml并放入apk。\
+ 获取xml：从`/data/data/包名/shared_prefs`目录下获取容器设置xml。命名格式应为`包名.CONTAINER_CONFIG_序号.xml`。包名一般对应模拟器包名，序号从1开始。\
+ 放入apk：路径为/apk/assets/containerConfig/xxx.xml。可以参考演示视频：
+<iframe id="iframe1" height=300  frameborder=0 allowfullscreen="true" src="./1.mp4">  
+</iframe>
+
+4. 在主Activity中调用：`ExagearPrefs.setSP(getApplicationContext());`。
+5. 构建项目并在虚拟机中运行，发现可以正常创建SharePref文件。\
+ ![图2](./2.png)
+
+6. 使用插件将java转为smali，并导入exagear的dex。\
+ ExagearPrefs类的导入：进入mt管理器的dex编辑器++，在浏览界面随便长按一个路径然后点击导入，选择smali文件导入。\
+ ![图3](./3.png)
+7. 调用ExagearPrefs代码的导入：将MainActivity也转为smali，找到调用ExgearPrefs的那一行代码。
+ **注意这个代码不能直接用。第一行代码为获取`Lcom/example/datainsert/MainActivity`的Context，而在Exagear中应该获取它自己的某个Activity的context，所以我们现在需要将`Lcom/example/datainsert/MainActivity`修改为Exagear某个类的路径，然后放入这个类的OnCreate方法中（Activity生命周期从OnCreate开始）。要求为：必须是Activity，而且在Exagear启动时越早被调用越好。**
+    ```smali
+    #主Activity中调用函数的代码
+    invoke-virtual {p0}, Lcom/example/datainsert/MainActivity;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v1
+
+    invoke-static {v1}, Lcom/example/datainsert/ExagearPrefs;->setSP(Landroid/content/Context;)V
+    ```
+8. 寻找我们需要的Activity的方法：（以暗黑直装版为例）打开mt管理器左侧栏-Activity记录，然后启动Exagear，发现第一个启动的类为EDStartupActivity，决定就是它了。所以将第一行的代码对应类名改为Lcom/eltechs/ed/activities/EDStartUpActivity，然后放入EDStartUpActivity的initialiseStartupActions()方法的结尾（恩这个类里没有OnCreate，观察它仅有的几个函数就这个最像初始化函数了）
+    ```smali
+    #放入EDStartupActivity中initialiseStartupActions()结尾的代码
+    invoke-virtual {p0}, Lcom/eltechs/ed/activities/EDStartupActivity;->getApplicationContext()Landroid/content/Context;
+
+    move-result-object v1
+
+    invoke-static {v1}, Lcom/example/datainsert/ExagearPrefs;->setSP(Landroid/content/Context;)V
+    ```
+    ![图4](./4.png)
+
+9. 将xml也放入模拟器apk，重新编译dex，apk签名并重装，打开测试，发现不用点开设置也能启动内置环境了，成功。
 
 ## 解决实操
 本节和 解决原理 后半部分大致相同，省略了解释原理的部分。
@@ -101,8 +193,9 @@ tags:
     - 获取xml\
     这里提供一份来自j改fix39的xml[传送门]()，但是可能不通用。\
     **更好的方法**是从`/data/data/包名/shared_prefs/`目录下提取一份你的模拟器版本对应的xml，此目录需要root，可借助VMOS等工具，这里不过多介绍。
-    - 将提取出的xml移入apk演示gif：\
-    ![gif1](./6.gif)
+    - 将提取出的xml移入apk演示视频：\
+    <iframe id="iframe1" height=300  frameborder=0 allowfullscreen="true" src="./1.mp4">  
+    </iframe>
 
     需要注意的有：
     - 在apk中存放路径：`apk/assets/containerConfig/xxx.xml`。
