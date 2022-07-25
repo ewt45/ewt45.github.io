@@ -144,7 +144,6 @@ tags:
 
  <video src="/vids/1.mp4" position= "absolute" width="100%" height="100%" controls="controls">视频</video>
 
- <video src="1.mp4" position= "absolute" width="100%" height="100%" controls="controls">视频</video>
 
 4. 在主Activity中调用：`ExagearPrefs.setSP(getApplicationContext());`。
 5. 构建项目并在虚拟机中运行，发现可以正常创建SharePref文件。\
