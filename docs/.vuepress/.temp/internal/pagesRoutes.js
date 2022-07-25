@@ -24,4 +24,5 @@ export const pagesRoutes = [
   ["v-a52b191e","/tags/maliousaiche%EF%BC%9Axunhuisai/1/",{"title":""},["/tags/maliousaiche：xunhuisai/1/","/tags/maliousaiche%EF%BC%9Axunhuisai/1/index.html"]],
   ["v-01560935","/timeline/",{"title":""},["/timeline/index.html"]],
   ["v-03d52fd3","/posts/1/",{"title":""},["/posts/1/index.html"]],
+  ["v-73be9961","/blogs/exagearObbInAPk/",{"title":"将Exagear直装版数据包放到apk的assets中以减小体积安装后的占用空间"},["/blogs/exagearObbInAPk/index.html","/blogs/exagearObbInAPk/index.md"]],
 ]

@@ -51,4 +51,6 @@ export const pagesComponents = {
   "v-01560935": defineAsyncComponent(() => import(/* webpackChunkName: "v-01560935" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/timeline/index.html.vue")),
   // path: /posts/1/
   "v-03d52fd3": defineAsyncComponent(() => import(/* webpackChunkName: "v-03d52fd3" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/posts/1/index.html.vue")),
+  // path: /blogs/exagearObbInAPk/
+  "v-73be9961": defineAsyncComponent(() => import(/* webpackChunkName: "v-73be9961" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/blogs/exagearObbInAPk/index.html.vue")),
 }

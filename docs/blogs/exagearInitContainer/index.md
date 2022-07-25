@@ -139,9 +139,10 @@ tags:
 
 3. 获取xml并放入apk。\
  获取xml：从`/data/data/包名/shared_prefs`目录下获取容器设置xml。命名格式应为`包名.CONTAINER_CONFIG_序号.xml`。包名一般对应模拟器包名，序号从1开始。\
- 放入apk：路径为/apk/assets/containerConfig/xxx.xml。可以参考演示视频：
-<iframe id="iframe1" height=300  frameborder=0 allowfullscreen="true" src="./1.mp4">  
-</iframe>
+ 放入apk：路径为/apk/assets/containerConfig/xxx.xml。可以参考演示：
+ ![演示](6.gif)
+<!-- <iframe id="iframe1" height=300  frameborder=0 allowfullscreen="true" src="./1.mp4">  
+</iframe> -->
 
 4. 在主Activity中调用：`ExagearPrefs.setSP(getApplicationContext());`。
 5. 构建项目并在虚拟机中运行，发现可以正常创建SharePref文件。\
@@ -193,9 +194,10 @@ tags:
     - 获取xml\
     这里提供一份来自j改fix39的xml[传送门]()，但是可能不通用。\
     **更好的方法**是从`/data/data/包名/shared_prefs/`目录下提取一份你的模拟器版本对应的xml，此目录需要root，可借助VMOS等工具，这里不过多介绍。
-    - 将提取出的xml移入apk演示视频：\
-    <iframe id="iframe1" height=300  frameborder=0 allowfullscreen="true" src="./1.mp4">  
-    </iframe>
+    - 将提取出的xml移入apk演示：\
+    ![演示](6.gif)
+    <!-- <iframe id="iframe1" height=300  frameborder=0 allowfullscreen="true" src="./1.mp4">  
+    </iframe> -->
 
     需要注意的有：
     - 在apk中存放路径：`apk/assets/containerConfig/xxx.xml`。
@@ -236,6 +238,7 @@ tags:
 1. 发现sharePref的文件名前半部分的包名不是固定的，需要从GuestContainerConfig那看一下
 2. 发现自定义的sharePref文件设置项好像不够全面，导致依旧闪退。
 3. 干脆重写代码，改成移动现有xml文件到对应目录下。原方法的说明移入[分支页面](./detailed)下
+4. 想插入视频但是失败了，还是换回gif演示
 
 <style scoped>
 img{
