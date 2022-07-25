@@ -139,13 +139,10 @@ tags:
 
 3. 获取xml并放入apk。\
  获取xml：从`/data/data/包名/shared_prefs`目录下获取容器设置xml。命名格式应为`包名.CONTAINER_CONFIG_序号.xml`。包名一般对应模拟器包名，序号从1开始。\
- 放入apk：路径为/apk/assets/containerConfig/xxx.xml。可以参考演示：
+ 放入apk：路径为/apk/assets/containerConfig/xxx.xml。可以参考gif演示或[视频演示](/vids/exagearInitContainer/1.mp4)：\
  ![演示](./6.gif)
-<!-- position= "absolute" -->
- <video  height="300" controls="controls">
-    <source  src="/vids/exagearInitContainer/1.mp4" type="video/mp4">
- </video>
-
+ <!-- <video src="/vids/exagearInitContainer/1.mp4" height="300" controls="controls">
+ </video> -->
 
 4. 在主Activity中调用：`ExagearPrefs.setSP(getApplicationContext());`。
 5. 构建项目并在虚拟机中运行，发现可以正常创建SharePref文件。\
@@ -197,15 +194,13 @@ tags:
     - 获取xml\
     这里提供一份来自j改fix39的xml[传送门]()，但是可能不通用。\
     **更好的方法**是从`/data/data/包名/shared_prefs/`目录下提取一份你的模拟器版本对应的xml，此目录需要root，可借助VMOS等工具，这里不过多介绍。
-    - 将提取出的xml移入apk演示：\
+    - 将提取出的xml移入apk。参考gif演示或[视频演示](/vids/exagearInitContainer/1.mp4)：\
     ![演示](./6.gif)
-    <!-- <iframe id="iframe1" height=300  frameborder=0 allowfullscreen="true" src="./1.mp4">  
-    </iframe> -->
 
     需要注意的有：
     - 在apk中存放路径：`apk/assets/containerConfig/xxx.xml`。
     - 文件名\
-    不同包名的模拟器，xml文件名也不同。请去`/data/data/包名/shared_prefs/`目录下查看xml具体文件名，或者在dex中搜索`CONTAINER_CONFIG_FILE_KEY_PREFIX`。
+    不同包名的模拟器，xml文件名也不同。因此建议从`/data/data/包名/shared_prefs/`目录下直接提取现有xml，或者在dex中搜索`CONTAINER_CONFIG_FILE_KEY_PREFIX`查看对应值。
     - 文件个数\
     如果内置多个环境，那么应该创建多个xml放入containerConfig中，并且文件命名\*CONFIG_2.xml、\*CONFIG_3.xml...
     - 文件内容\
