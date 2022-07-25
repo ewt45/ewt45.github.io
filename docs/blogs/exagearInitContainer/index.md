@@ -140,9 +140,11 @@ tags:
 3. 获取xml并放入apk。\
  获取xml：从`/data/data/包名/shared_prefs`目录下获取容器设置xml。命名格式应为`包名.CONTAINER_CONFIG_序号.xml`。包名一般对应模拟器包名，序号从1开始。\
  放入apk：路径为/apk/assets/containerConfig/xxx.xml。可以参考演示：
- ![演示](6.gif)
-<!-- <iframe id="iframe1" height=300  frameborder=0 allowfullscreen="true" src="./1.mp4">  
-</iframe> -->
+ ![演示](./6.gif)
+
+ <video src="/vids/1.mp4" position= "absolute" width="100%" height="100%" controls="controls">视频</video>
+
+ <video src="1.mp4" position= "absolute" width="100%" height="100%" controls="controls">视频</video>
 
 4. 在主Activity中调用：`ExagearPrefs.setSP(getApplicationContext());`。
 5. 构建项目并在虚拟机中运行，发现可以正常创建SharePref文件。\
@@ -195,7 +197,7 @@ tags:
     这里提供一份来自j改fix39的xml[传送门]()，但是可能不通用。\
     **更好的方法**是从`/data/data/包名/shared_prefs/`目录下提取一份你的模拟器版本对应的xml，此目录需要root，可借助VMOS等工具，这里不过多介绍。
     - 将提取出的xml移入apk演示：\
-    ![演示](6.gif)
+    ![演示](./6.gif)
     <!-- <iframe id="iframe1" height=300  frameborder=0 allowfullscreen="true" src="./1.mp4">  
     </iframe> -->
 

@@ -1,10 +1,11 @@
 export const pagesRoutes = [
   ["v-8daa1a0e","/",{"title":""},["/index.html","/index.md"]],
   ["v-7cc524c2","/blogs/adblockplus/",{"title":""},["/blogs/adblockplus/index.html","/blogs/adblockplus/index.md"]],
+  ["v-59d7e34c","/blogs/blockdanmu/",{"title":"屏蔽斗鱼直播间的重复弹幕"},["/blogs/blockdanmu/index.html","/blogs/blockdanmu/index.md"]],
+  ["v-1240779e","/blogs/changeuserdataLocation/",{"title":"将植物大战僵尸安卓版游戏存档路径改到外部存储下（以谷歌free版为例）"},["/blogs/changeuserdataLocation/index.html","/blogs/changeuserdataLocation/index.md"]],
   ["v-5f798ac5","/blogs/exagearInitContainer/detailed.html",{"title":""},["/blogs/exagearInitContainer/detailed","/blogs/exagearInitContainer/detailed.md"]],
   ["v-08f501e4","/blogs/exagearInitContainer/",{"title":"解决exagear内置容器，必须点开一次环境设置才能启动环境的问题"},["/blogs/exagearInitContainer/index.html","/blogs/exagearInitContainer/index.md"]],
-  ["v-1b8232eb","/blogs/cundanglujing/",{"title":"将植物大战僵尸安卓版游戏存档路径改到外部存储下（以谷歌free版为例）"},["/blogs/cundanglujing/index.html","/blogs/存档路径/","/blogs/%E5%AD%98%E6%A1%A3%E8%B7%AF%E5%BE%84/","/blogs/存档路径/index.md","/blogs/%E5%AD%98%E6%A1%A3%E8%B7%AF%E5%BE%84/index.md"]],
-  ["v-c8b40104","/blogs/danmupingbi/",{"title":"屏蔽斗鱼直播间的重复弹幕"},["/blogs/danmupingbi/index.html","/blogs/弹幕屏蔽/","/blogs/%E5%BC%B9%E5%B9%95%E5%B1%8F%E8%94%BD/","/blogs/弹幕屏蔽/index.md","/blogs/%E5%BC%B9%E5%B9%95%E5%B1%8F%E8%94%BD/index.md"]],
+  ["v-73be9961","/blogs/exagearObbInAPk/",{"title":"将Exagear直装版数据包放到apk的assets中以减小体积安装后的占用空间"},["/blogs/exagearObbInAPk/index.html","/blogs/exagearObbInAPk/index.md"]],
   ["v-3fb33734","/nonBlog/marioKartTour/",{"title":"马力欧赛车：巡回赛图鉴"},["/nonBlog/marioKartTour/index.html","/nonBlog/marioKartTour/index.md"]],
   ["v-3706649a","/404.html",{"title":""},["/404"]],
   ["v-539d2ec6","/categories/jishu/1/",{"title":""},["/categories/jishu/1/index.html"]],
@@ -24,5 +25,4 @@ export const pagesRoutes = [
   ["v-a52b191e","/tags/maliousaiche%EF%BC%9Axunhuisai/1/",{"title":""},["/tags/maliousaiche：xunhuisai/1/","/tags/maliousaiche%EF%BC%9Axunhuisai/1/index.html"]],
   ["v-01560935","/timeline/",{"title":""},["/timeline/index.html"]],
   ["v-03d52fd3","/posts/1/",{"title":""},["/posts/1/index.html"]],
-  ["v-73be9961","/blogs/exagearObbInAPk/",{"title":"将Exagear直装版数据包放到apk的assets中以减小体积安装后的占用空间"},["/blogs/exagearObbInAPk/index.html","/blogs/exagearObbInAPk/index.md"]],
 ]

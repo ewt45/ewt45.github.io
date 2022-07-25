@@ -5,14 +5,16 @@ export const pagesComponents = {
   "v-8daa1a0e": defineAsyncComponent(() => import(/* webpackChunkName: "v-8daa1a0e" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/index.html.vue")),
   // path: /blogs/adblockplus/
   "v-7cc524c2": defineAsyncComponent(() => import(/* webpackChunkName: "v-7cc524c2" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/blogs/adblockplus/index.html.vue")),
+  // path: /blogs/blockdanmu/
+  "v-59d7e34c": defineAsyncComponent(() => import(/* webpackChunkName: "v-59d7e34c" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/blogs/blockdanmu/index.html.vue")),
+  // path: /blogs/changeuserdataLocation/
+  "v-1240779e": defineAsyncComponent(() => import(/* webpackChunkName: "v-1240779e" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/blogs/changeuserdataLocation/index.html.vue")),
   // path: /blogs/exagearInitContainer/detailed.html
   "v-5f798ac5": defineAsyncComponent(() => import(/* webpackChunkName: "v-5f798ac5" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/blogs/exagearInitContainer/detailed.html.vue")),
   // path: /blogs/exagearInitContainer/
   "v-08f501e4": defineAsyncComponent(() => import(/* webpackChunkName: "v-08f501e4" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/blogs/exagearInitContainer/index.html.vue")),
-  // path: /blogs/cundanglujing/
-  "v-1b8232eb": defineAsyncComponent(() => import(/* webpackChunkName: "v-1b8232eb" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/blogs/存档路径/index.html.vue")),
-  // path: /blogs/danmupingbi/
-  "v-c8b40104": defineAsyncComponent(() => import(/* webpackChunkName: "v-c8b40104" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/blogs/弹幕屏蔽/index.html.vue")),
+  // path: /blogs/exagearObbInAPk/
+  "v-73be9961": defineAsyncComponent(() => import(/* webpackChunkName: "v-73be9961" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/blogs/exagearObbInAPk/index.html.vue")),
   // path: /nonBlog/marioKartTour/
   "v-3fb33734": defineAsyncComponent(() => import(/* webpackChunkName: "v-3fb33734" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/nonBlog/marioKartTour/index.html.vue")),
   // path: /404.html
@@ -51,6 +53,4 @@ export const pagesComponents = {
   "v-01560935": defineAsyncComponent(() => import(/* webpackChunkName: "v-01560935" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/timeline/index.html.vue")),
   // path: /posts/1/
   "v-03d52fd3": defineAsyncComponent(() => import(/* webpackChunkName: "v-03d52fd3" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/posts/1/index.html.vue")),
-  // path: /blogs/exagearObbInAPk/
-  "v-73be9961": defineAsyncComponent(() => import(/* webpackChunkName: "v-73be9961" */"D:/code_data/VSCode/ewt45.github.io/docs/.vuepress/.temp/pages/blogs/exagearObbInAPk/index.html.vue")),
 }
