@@ -1,53 +1,59 @@
 {
-  "hash": "13a333f8",
-  "browserHash": "039ae87c",
+  "hash": "dcef6267",
+  "browserHash": "554b0306",
   "optimized": {
     "@vicons/tabler": {
       "src": "../../../../node_modules/@vicons/tabler/es/index.js",
       "file": "@vicons_tabler.js",
-      "fileHash": "d15143b4",
+      "fileHash": "23475fce",
       "needsInterop": false
     },
     "@vue/devtools-api": {
       "src": "../../../../node_modules/@vue/devtools-api/lib/esm/index.js",
       "file": "@vue_devtools-api.js",
-      "fileHash": "d1e2a968",
+      "fileHash": "71233766",
       "needsInterop": false
     },
     "@vuepress-reco/shared": {
       "src": "../../../../node_modules/@vuepress-reco/shared/lib/esm/index.js",
       "file": "@vuepress-reco_shared.js",
-      "fileHash": "d12ed751",
+      "fileHash": "d39c2e35",
       "needsInterop": false
     },
     "@vuepress/shared": {
       "src": "../../../../node_modules/@vuepress/shared/dist/index.js",
       "file": "@vuepress_shared.js",
-      "fileHash": "be48d813",
+      "fileHash": "65173799",
       "needsInterop": false
     },
     "vue-router": {
       "src": "../../../../node_modules/vue-router/dist/vue-router.esm-bundler.js",
       "file": "vue-router.js",
-      "fileHash": "add5353f",
+      "fileHash": "aebb519f",
       "needsInterop": false
     },
     "element-plus": {
       "src": "../../../../node_modules/element-plus/es/index.mjs",
       "file": "element-plus.js",
-      "fileHash": "213ad998",
+      "fileHash": "b5e08b81",
       "needsInterop": false
+    },
+    "axios": {
+      "src": "../../../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "d8696918",
+      "needsInterop": true
     }
   },
   "chunks": {
-    "chunk-JEULSHPG": {
-      "file": "chunk-JEULSHPG.js"
+    "chunk-4CIBZ63L": {
+      "file": "chunk-4CIBZ63L.js"
     },
-    "chunk-K4FWEGL6": {
-      "file": "chunk-K4FWEGL6.js"
+    "chunk-4WVBPDZ4": {
+      "file": "chunk-4WVBPDZ4.js"
     },
-    "chunk-EELXSYGX": {
-      "file": "chunk-EELXSYGX.js"
+    "chunk-XODWRXES": {
+      "file": "chunk-XODWRXES.js"
     }
   }
 }

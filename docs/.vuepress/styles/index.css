@@ -1,0 +1,4 @@
+.theme-reco-default-content img{
+    /* @apply max-h-[300px] !important; */
+    max-height: 300px;
+}
