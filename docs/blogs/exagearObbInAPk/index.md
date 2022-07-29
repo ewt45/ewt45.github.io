@@ -244,16 +244,3 @@ tags:
 1. 将obb放入apk的assets目录下，需要时提取出来，不用了再删掉。
 2. 目前代码实现的缺点是必须要在第二次启动时才能删除obb文件。deleteOnExit只有在vm正常关闭时才会触发所以没啥用。其实可以在那个函数底下，找到obb解压完成的位置，调用一次删除obb的函数，不过懒得做了=-=
 
-:::: code-group
-::: code-group-item FOO
-```Python
-coolk sendChannelMsg()
-```
-:::
-::: code-group-item BAR
-```js
-const bar = 'bar'
-```
-:::
-::::
-
