@@ -1,6 +1,6 @@
 .temp
 .cache
-/docs/nonBlog
+/docs/nonBlog/marioKartTour
 /docs/.vuepress/public/mkt
 node_modules
 /docs/.vuepress/dist
