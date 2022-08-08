@@ -1,4 +1,21 @@
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
 .theme-reco-default-content img{
-    /* @apply max-h-[300px] !important; */
     max-height: 300px;
 }
+.hero-content h1{
+    text-shadow: -1px -1px 0 rgb(255, 255, 255), 
+    1px 1px 0 rgb(255, 255, 255),
+    -1px 1px 0 rgb(255, 255, 255),
+    1px -1px 0 rgb(255, 255, 255);
+
+}
+.hero-content p{
+    text-shadow: -0.03rem -0.03rem 0 rgb(255, 255, 255), 
+    0.03rem 0.03rem 0 rgb(255, 255, 255),
+    -0.03rem 0.03rem 0 rgb(255, 255, 255),
+    0.03rem -0.03rem 0 rgb(255, 255, 255);
+
+}
+
