@@ -12,8 +12,7 @@
       v-model="customEdit.inPutBvid"
       placeholder="bv号"
       @change="handleBvidChange"
-    >
-    </el-input>
+    />
   </el-row>
   <!-- <el-row>
     <el-descriptions border :column="1">
@@ -228,7 +227,7 @@ nextTick(() => {
   subImg.src = "";
   // console.log("nextTick:canvas应该加载完了吧", canvasRef.value);
   let ctx = canvasRef.value.getContext("2d");
-  
+
   console.log("nexttick结束");
 });
 
@@ -239,7 +238,12 @@ watch(customEdit, () => {
   updCanvas();
 });
 
-/**更新一次画布内容 */
+/**更新一次画布内容
+ * promise: 往下传递m:customEdit。从then开始用async await
+ * 当前promise顺序：
+ *  判断是否支持canvas->左图地址是否改变->右图地址是否改变->绘制左图->绘制右图->绘制分界线及阴影->绘制文字
+ *
+ */
 const updCanvas = () => {
   if (!canvasRef.value) return false;
 
@@ -418,7 +422,11 @@ const updCanvas = () => {
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillStyle = "black";
-      ctx.fillText("P" + (m.currEpisodeIndex+1), m.fullWidth - mw - 100 - 70, 320);
+      ctx.fillText(
+        "P" + (m.currEpisodeIndex + 1),
+        m.fullWidth - mw - 100 - 70,
+        320
+      );
       //取消阴影样式
       ctx.shadowColor = "#00000000";
       return m;

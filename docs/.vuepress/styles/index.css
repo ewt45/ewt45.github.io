@@ -3,6 +3,8 @@
 @tailwind utilities; */
 .theme-reco-default-content img{
     max-height: 300px;
+    @apply shadow-md;
+    @apply mx-auto;
 }
 .hero-content h1{
     text-shadow: -1px -1px 0 rgb(255, 255, 255), 
@@ -19,3 +21,10 @@
 
 }
 
+ul {
+    @apply list-disc;
+  }
+
+  ol {
+    @apply list-decimal;
+  }

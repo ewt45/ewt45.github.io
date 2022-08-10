@@ -13,8 +13,8 @@ export default defineUserConfig({
     //还有就是原生的没有样式，reco的写法才有样式)
     series: {
       '/blogs/exagearInitContainer': [
-        {text: '主篇', link: './', children: []}
-        , {text: '旧方法', link: 'detailed', children: []}
+        { text: '主篇', link: './', children: [] }
+        , { text: '旧方法', link: 'detailed', children: [] }
       ]
       ,
 
@@ -36,11 +36,16 @@ export default defineUserConfig({
     //顶部导航栏
     navbar: [
       { text: '首页', link: '/', icon: 'reco-home' },
+      {
+        text: '应用', link: '/', children: [
+          { text: '批量生成b站合集的分p封面图', link: '/docs/nonblog/batchCover' }
+        ]
+      },
     ],
     componentsDir: './docs/.vuepress/components',
 
   }),
 
-  open:true,
-  
+  open: true,
+
 })
