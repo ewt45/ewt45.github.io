@@ -38,7 +38,7 @@ export default defineUserConfig({
       { text: '首页', link: '/', icon: 'reco-home' },
       {
         text: '应用', link: '/', children: [
-          { text: '批量生成b站合集的分p封面图', link: '/docs/nonblog/batchCover' }
+          { text: '批量生成b站合集的分p封面图', link: '/blogs/app/batchCover' }
         ]
       },
     ],
