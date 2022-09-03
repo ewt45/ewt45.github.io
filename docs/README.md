@@ -1,2 +1,2 @@
 # Hello VuePress
-yarn docs:dev
+本地测试：yarn docs:dev
