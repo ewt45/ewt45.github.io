@@ -160,6 +160,6 @@ initNewContainer()方法用于创建容器，主要看它的内容。
     #修改结束
 ```
 #### 1.5.5 改完dex
-改完dex之后，向linux中添加多个版本wine并做成数据包，在apk/assets/WinesVersionInfo.txt里写上每个wine的版本信息，在创建容器时就可以选择wine版本进行创建了。
+改完dex之后，向linux中添加多个版本wine（和预设WINEPREFIX）并做成数据包，在apk/assets/WinesVersionInfo.txt里写上每个wine的版本信息，在创建容器时就可以选择wine版本进行创建了。
 ## 一些探索过程记录
 略
