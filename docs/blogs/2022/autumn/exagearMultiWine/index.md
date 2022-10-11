@@ -1,5 +1,5 @@
 ---
-date: '2022-9-27 09:24:39'
+date: '2022-10-11 14:22:16'
 title: 向exagear数据包中添加任意个数的不同wine版本
 categories: 
  - 技术
@@ -9,69 +9,58 @@ tags:
  - linux
  - exagear
 ---
-[[TOC]]
 
-## 1 利用现成代码，修改手头上的apk
-### 1.1 修改之前要了解的知识
-#### 1.1.1 本文可能不会详细讲的知识
+[[TOC]]
+## 视频演示
+测试了从容器设置启动和快捷方式启动不同版本wine，添加一个新版本wine。
+
+[【安卓Exagear】单apk支持多版本wine共存 大概就这样了】](https://www.bilibili.com/video/BV1bD4y1k7ch?share_source=copy_web&vd_source=de2377a6a91c81456918f0dc49bfbd5d)
+<iframe src="//player.bilibili.com/player.html?aid=731433211&bvid=BV1bD4y1k7ch&cid=858758941&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="500" height="300"> 不支持iframe视频无法显示</iframe>
+
+
+
+## 前言
+由于现在exagear的apk种类繁多，所以与其提供成品，不如讲一下如何将需要用到的代码添加到apk中，以方便各路制作者。
+
+本文可能不会详细讲解：
 - 打包数据包
 - dex/smali修改基础知识
 
-#### 1.1.2 不同版本的wine如何在linux上共存？
-- 测试的环境：VirtualBox+Ubuntu Server 18 i386。32位ubuntu18是官网找的netboot镜像mini.iso。
-- [参考教程1](https://askubuntu.com/a/1193281) [参考教程2](https://wiki.winehq.org/FAQ#Can_I_install_more_than_one_Wine_version_on_my_system.3F) [参考教程3](https://wiki.winehq.org/Ubuntu#Notes)。参考教程2自己编译太费时间了，我选择参考教程1里的直接解压deb安装包。
-    - ---
-1. winehq官网deb包的安装位置都是默认的/usr/bin，也就是说安装后wine执行文件的绝对路径是/usr/bin/wine，如果安装第二个版本，它还是安到这个路径覆盖上一个版本。解决办法是，要么自己下载源码编译，编译前自己指定一个安装路径，编译好安装到自定义的目录再运行，要么编译之后不安装，直接从编译后的目录运行。
-2. 鉴于我对linux不熟悉，不如直接用官网已编译好的二进制安装包。参考上面的参考教程1，去[官网下载地址](https://dl.winehq.org/wine-builds/ubuntu/dists/bionic/main/binary-i386/)下载wine-stable-i386.deb和wine-stable.deb。关于wine、wine-i386、winehq的区别可以看参考教程3。将两个deb中的opt和usr文件夹解压到同一目录下，如/usr/wines/wine6.0.4。若想启动wine，使用绝对路径调用即可，如`/usr/wines/wine6.0.4/opt/wine-stable/bin/wine winecfg`。
-3. 此时wine可能无法正常启动，因为可能缺少依赖库。最简单的办法，就是反正已经有deb了，先dpkg安装一遍，遇到依赖报错就apt install -f补全缺失的依赖，直到能安装成功，就可以卸载了=-=。
-4. 然后测试能正常打开winecfg和植物大战僵尸年度版，就没照着参考教程1里设置LD_LIBRARY_PATH了，不确定是否有其他影响。
-5. 如果想添加另一个版本的wine，一样只需下载两个deb包，解压，使用绝对路径启动wine即可。
-    - ---
-- WINEPREFIX：在启动wine时可以使用该参数指定虚拟windows系统安装的路径，默认在/home/user/.wine。使用不同版本wine的时候最好分别指定不同的WINEPREFIX。这个文件夹exagear也会用于创建新容器时添加预设内容，所以应注意一下。
-#### 1.1.3 exagear启动wine的流程？
-- 使用jadx反编译dex，查看java代码。
-1. ManageContainersFragment类
-    - 是一个fragment类，用于显示容器管理界面。其重写的父类的方法onCreateOptionsMenu()用于初始化右上角的新建容器按钮。
-    - 包含内部类ContAsyncTask，用于执行创建/复制/删除容器的具体操作。创建容器时，会调用GuestContainersManager.cloneContainer()。
-2. GuestContainersManager类\
-initNewContainer()方法用于创建容器，主要看它的内容。
-    1. 新建一个容器，容器目录为内部files/image/home/xdroid_n，n从1开始。其中内部files/image为linux系统所在目录，后面省略。
-    2. 把/opt/guestcont-pattern里的文件复制到容器目录下。guestcont-pattern里有.wine文件夹，是WINEPREFIX路径。
-    3. 把opt/recipe/run/simple.sh 复制到容器目录/.wine/run.sh。
-    4. 填写容器设置的sharedpreference。调用GuestContainerConfig.loadDefaults()或cloneContainerConfig()，sharePref命名格式为 包名.CONTAINER_CONFIG_n.xml
-    5. 容器序号+1，新容器添加到容器数组中
-3. StartGuest类\
-看完了创建容器的过程，再看一下启动容器的过程。
-    1. 有几个构造函数，传入参数为InstallApp/RunXDGLink/RunExplorer。后两个是从“桌面”界面启动和从“容器”界面启动，第一个也许是从“开始菜单”启动？没见过，主要看从“容器”界面启动的吧。
-    2. public StartGuest(RunExplorer runExplorer)构造函数中，初始化成员变量。有一个字符串很明显是调用wine的语句`this.mExeArgv.addAll(Arrays.asList(getRecipeGuestPath("run/simple.sh"), "eval \"wine /opt/exec_wrapper.exe /opt/TFM.exe D:/\""));`。这个eval后面跟着的字符串wine+程序名就是启动容器时执行的命令，然后进入容器后就会打开对应程序。
-    3. execute()函数是真正执行操作的函数，这里会读取容器设置的sharedPreference，并且根据这些设置参数，启动容器。无论用哪个构造函数，最后都会调用此方法。
-    4. 启动时会创建/home/xdroid到xdroid_n的链接，这样不管启动哪个容器，WINEPREFIX直接设置为/home/xdroid即可。
-### 1.2 需要修改的地方有？
-- 首先考虑wine在u18上的共存。其实非常简单，只需解压安装包到任意目录即可。唯一的要求就是使用绝对路径调用wine。非强制性要求是为不同版本wine指定不同的WINEPREFIX路径。
-- 然后考虑exagear对多版本wine的识别。根据上面所说的，其实需要修改的地方就是StartGuest中调用wine的那个命令行，从相对路径wine改为绝对路径（自己解压的位置），就能正常启动容器了。
-- 由于每个容器存放在xdroid_n文件夹下，所以WINEPREFIX自然是不同的，不需要我们手动指定。但是要注意一点，在创建容器时是会复制一个文件夹/opt/guestcont-pattern到WINEPREFIX下的，这个pattern文件夹相当于预设容器，用于配置一些预设内容来替代wine默认的配置。由于有些d3d好像仅支持某些版本的wine，所以也应修改代码以支持根据wine版本复制不同的pattern文件夹。
-### 1.3 设计方案
-1. 在创建容器时，点击加号应该弹出wine版本选项以供用户选择。注意那个加号已经是一个菜单项而不是按钮，所以没法简单地用PopupMenu。
-2. 用户点击对应wine版本创建容器，程序应该根据版本记录对应的wine执行路径，以便启动容器时的eval可以正确调用wine。由于每个容器都有各自的wine执行路径，而exagear本身就创建了每个容器设置的SharedPref xml，不如直接将该信息记录到容器设置的xml中。
-3. 用户启动容器（仅考虑从“容器”界面启动的情况），程序应该从容器设置xml中读取wine执行程序的绝对路径以代替eval中的“wine”。
-4. 代码添加完成之后，应保证在修改者添加一个新版本wine时操作尽量简便，即仅需最少量的修改dex，arsc，xml的操作。思路：在apk/assets/WinesVersionInfo.txt中记录全部wine版本，在用户点击加号时读取该txt中的内容并动态创建菜单项。这样修改者无需手动修改布局的菜单xml、手动添加各种资源id或者手写smali了。
-5. 基于第四点的想法，简单制定一些txt中文本规则：
-    - 文本采用utf-8编码，不能留有空行。
-    - 每一行就是一个wine版本信息，记录wine名字（自定义，用于菜单项的显示），wine执行路径，wine预设容器路径。三条信息两两之间用空格分隔。
-    - 以#开头的是注释。
-    - 以usage:开头的是说明，作为最后一个菜单项和wine版本菜单项一起出现。
-### 1.4 编写代码
-略
-### 1.5 java反编译为smali并添加入dex
-- 自己写的代码部分，提供smali文件。ex的dex需要修改的部分，提供smali修改样例，不保证适用不同版本。
-- 提供的代码里使用的均为原版包名即`com.eltechs.ed`。修改包名时，注意有个字符串也带包名记得修改。
+linux上wine共存的方法参考了[参考教程](https://askubuntu.com/a/1193281)，因为是32位系统不用下amd64那个。
+
+这是第二次修改了，方法用的是添加环境变量。第一次用的方法是使用绝对路径调用wine，文章在这里[向exagear数据包中添加任意个数的不同wine版本(旧)](./deprecated.html)。里面讲了一些了wine的基础知识，exagear启动容器时相关的函数，修改共存的设计思路和修改流程等，本篇不再说了。
+
+## 思路
+- exagear创建容器的方法为在容器管理界面点击右上角加号。如果改为多wine支持，应该在点击加号后显示几个菜单项以供用户选择wine版本。为了制作者添加一个数据包的所需操作最少，采用从apk/assets/WinesVersionInfo.txt中读取wine信息，动态创建菜单项的方法。并为txt内容书写制定以下规则：
+    - 文本采用utf-8编码，不留空行。
+    - 每一行就是一个wine版本信息，记录wine名字（自定义，用于菜单项的显示），wine安装路径（比如wine执行文件的路径为/opt/wine-stable/bin/wine，那么这一项就填/opt/wine-stable），wine预设容器路径。三条信息两两之间用空格分隔。举例：`wine3.0.5 /opt/wine3.0.5/opt/wine-stable /opt/guestcont-pattern`
+    - 以#开头的一行是注释。
+    - 以usage:开头的一行是说明，作为最后一个菜单项和wine版本菜单项一起出现。
+- exagear创建容器时，会将/opt/guestcont-pattern目录下的虚拟windows系统复制到新容器中，这个文件夹用来做一些预制环境。对如果改为多wine支持，应支持设置不同的预制环境目录。
+- exagear启动容器时，会调用命令 wine 来显示虚拟桌面。由于一般wine的安装路径都包含在环境变量PATH中（如/usr/bin），所以无需指定wine程序的绝对路径。如果改为多wine支持，就要手动向环境变量PATH中添加对应版本的wine的路径。
+    - exa从容器设置启动容器时调用wine命令写在了dex中，而从快捷方式启动的调用wine命令写在快捷方式文件中。
+## 修改dex(smali)
+编写java代码的思路先略过了。
+
+:::warning 注意事项
+修改时可能需要注意一下几点
+- 我自己写的代码部分，提供smali文件，直接导入即可。ex的dex需要修改的部分，提供smali修改样例仅供参考，实际修改请注意寄存器，包名等。
+- 下面提供的代码里使用的均为原版包名即`com.eltechs.ed`。修改包名时除了类名所属包名要改，注意有个字符串也带包名记得修改。
 - 如果测试时发现wine路径写错了，改了txt之后应删掉容器重新建，否则wine路径不会变化。
-- 从快捷方式启动时eval的wine路径没写在dex中，而是写在了.desktop快捷方式文件中，请自行修改文件中的wine为绝对路径。模拟器内创建快捷方式时默认都是wine，**所以如果用户自行创建了快捷方式就会无法从快捷方式启动模拟器，暂时不知道怎么解决。**
-    - ---
+- 因为需要修改环境变量，测试又发现无法识别$PATH，所以我只好把默认的那些PATH都写上了，如果制作者的linux系统的PATH包含其他路径，需要在com.example.datainsert.exagear.mutiWine.MutiWine中找到PATH字符串并手动添加。
+:::
+
+- ---
+修改涉及的类：
 - 修改wine选项弹窗，涉及ManagerContainersFragment类
 - 修改创建容器时操作，涉及GuestContainerConfig,GuestContainersManager类
 - 修改启动容器时操作，涉及StartGuest类
-#### 1.5.1 ManagerContainersFragment类
+
+----
+
+### 我自己写的类
+[下载地址](https://wwn.lanzout.com/iduTq0dmf7cf)。将压缩包中全部类添加到dex中即可
+### ManagerContainersFragment类
 - onOptionsItemSelected方法整个删掉。
 - onCreateOptionMenu方法，注释掉原有语句，添加
     ```smali
@@ -101,7 +90,8 @@ initNewContainer()方法用于创建容器，主要看它的内容。
         return-void
     .end method
     ```
-#### 1.5.2 GuestContainerConfig类
+
+#### GuestContainerConfig类
 - loadDefaults()方法。在末尾添加
     ```smali
     #添加wine版本信息
@@ -130,7 +120,7 @@ initNewContainer()方法用于创建容器，主要看它的内容。
 
     invoke-virtual {p0}, Lcom/eltechs/ed/guestContainers/GuestContainerConfig;->getRunGuideShown()Ljava/lang/Boolean;
     ```
-#### 1.5.3 GuestContainersManager类
+### GuestContainersManager类
 - initNewContainer方法里，注释掉字符串“opt/guestcont-pattern”那一行并在下面添加
     ```smali
      # const-string v2, "/opt/guestcont-pattern/"
@@ -139,27 +129,33 @@ initNewContainer()方法用于创建容器，主要看它的内容。
 
     move-result-object v2
     ```
-
-#### 1.5.4 StartGuest类
-- init构造方法，传RunExplorer那个, 注释掉原先的eval字符串，并添加
+### StartGuest类
+execute()方法，iput-object设置完mCont的下面，添加对应版本的wine的环境变量
 ```smali
-.method public constructor <init>(Lcom/eltechs/ed/startupActions/StartGuest$RunExplorer;)V
-    #...
-    #修改 eval的wine执行路径
-    
-    iget-object v0, p0, Lcom/eltechs/ed/startupActions/StartGuest;->mCont:Lcom/eltechs/ed/guestContainers/GuestContainer;
-    
-    iget-object v0, v0, Lcom/eltechs/ed/guestContainers/GuestContainer;->mId:Ljava/lang/Long;
-    
-    invoke-static {v0}, Lcom/example/datainsert/exagear/mutiWine/MutiWine;->getExeEvalArgv(Ljava/lang/Long;)Ljava/lang/String;
+iput-object v0, p0, Lcom/eltechs/ed/startupActions/StartGuest;->mCont:Lcom/eltechs/ed/guestContainers/GuestContainer;
 
-    move-result-object v0
-    
-    #const-string v0, "eval \"wine /opt/exec_wrapper.exe /opt/TFM.exe D:/\""
+.line 260
+:cond_c
 
-    #修改结束
+#添加 将启动容器的id写入pref
+#  iget-object v1, p0, Lcom/eltechs/ed/startupActions/StartGuest;->mCont:Lcom/eltechs/ed/guestContainers/GuestContainer;
+
+# iget-object v1, v1, Lcom/eltechs/ed/guestContainers/GuestContainer;->mId:Ljava/lang/Long;
+
+#  invoke-static {v1}, Lcom/example/datainsert/exagear/mutiWine/MutiWine;->writeIdToTmp(Ljava/lang/Long;)V
+
+#添加 结束
+
+#添加 将wine执行路径添加到环境变量
+iget-object v0, p0, Lcom/eltechs/ed/startupActions/StartGuest;->mCont:Lcom/eltechs/ed/guestContainers/GuestContainer;
+
+iget-object v0, v0, Lcom/eltechs/ed/guestContainers/GuestContainer;->mId:Ljava/lang/Long;
+
+iget-object v1, p0, Lcom/eltechs/ed/startupActions/StartGuest;->mEnv:Ljava/util/List;
+
+invoke-static {v0, v1}, Lcom/example/datainsert/exagear/mutiWine/MutiWine;->addEnvVars(Ljava/lang/Long;Ljava/util/List;)V
+
+#添加 结束
 ```
-#### 1.5.5 改完dex
-改完dex之后，向linux中添加多个版本wine（和预设WINEPREFIX）并做成数据包，在apk/assets/WinesVersionInfo.txt里写上每个wine的版本信息，在创建容器时就可以选择wine版本进行创建了。
-## 一些探索过程记录
-略
+### 改完dex
+改完dex之后，向数据包中添加多个版本wine（和预设WINEPREFIX）并做成数据包，在apk/assets/WinesVersionInfo.txt里写上每个wine的版本信息，在创建容器时就可以选择wine版本进行创建了。
