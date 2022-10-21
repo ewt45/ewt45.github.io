@@ -3,6 +3,7 @@ date: '2022-9-6 13:46:23'
 title: 将virgl overlay的apk整合入exagear
 categories: 
  - 技术
+ - exagear
 tags:
  - android
  - virgl overlay

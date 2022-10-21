@@ -3,6 +3,7 @@ date: '2022-09-03 10:11'
 title: 解决安卓12的应用，无法通过PopupMenu唤起软键盘（键盘闪退）问题（exagear为例）
 categories: 
  - 技术
+ - exagear
 tags:
  - android
  - SoftKeyBoard

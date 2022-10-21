@@ -3,6 +3,7 @@ date: '2022-10-16 11:04:09'
 title: 为exagear容器设置添加自定义分辨率功能（兼容原有的预设分辨率的选择
 categories: 
  - 技术
+ - exagear
 tags:
  - android
  - preference

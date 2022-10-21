@@ -3,6 +3,7 @@ date: '2022-10-11 14:22:16'
 title: 向exagear数据包中添加任意个数的不同wine版本
 categories: 
  - 技术
+ - exagear
 tags:
  - android
  - wine
