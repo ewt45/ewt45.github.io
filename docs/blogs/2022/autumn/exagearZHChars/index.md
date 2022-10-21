@@ -40,27 +40,32 @@ tags:
         const/high16 v3, 0x1000000
 
         .line 197
-        const/high16 v0, 0x10000
-
-        if-gt p1, v0, :cond_c
-
-        iget-object v0, p0, Lcom/eltechs/axs/Keyboard;->UnicodeToXKeyMap:[Lcom/eltechs/axs/Keyboard$XKey;
-
-        aget-object v0, v0, p1
-
-        if-nez v0, :cond_21
+        const/4 v0, 0x0
 
         .line 198
-        :cond_c
-        const-string v0, "Keyboard"
+        .local v0, "returnKey":Lcom/eltechs/axs/Keyboard$XKey;
+        const/high16 v1, 0x10000
 
-        const-string v1, "convertUnicodeToXKey: \u8d85\u51fa\u6570\u7ec465535\u8303\u56f4"
+        if-gt p1, v1, :cond_d
 
-        invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+        iget-object v1, p0, Lcom/eltechs/axs/Keyboard;->UnicodeToXKeyMap:[Lcom/eltechs/axs/Keyboard$XKey;
+
+        aget-object v1, v1, p1
+
+        if-nez v1, :cond_32
 
         .line 199
+        :cond_d
+        const-string v1, "Keyboard"
+
+        const-string v2, "convertUnicodeToXKey: \u8d85\u51fa\u6570\u7ec465535\u8303\u56f4"
+
+        invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+
+        .line 200
         new-instance v0, Lcom/eltechs/axs/Keyboard$XKey;
 
+        .end local v0    # "returnKey":Lcom/eltechs/axs/Keyboard$XKey;
         sget-object v1, Lcom/ewt45/exagearsupportv7/input/CHCharSupport;->avaiKeyCode:[Lcom/eltechs/axs/KeyCodesX;
 
         sget v2, Lcom/ewt45/exagearsupportv7/input/CHCharSupport;->currIndex:I
@@ -71,55 +76,77 @@ tags:
 
         invoke-direct {v0, p0, v1, v2}, Lcom/eltechs/axs/Keyboard$XKey;-><init>(Lcom/eltechs/axs/Keyboard;Lcom/eltechs/axs/KeyCodesX;I)V
 
-        .line 207
-        :goto_20
+        .line 201
+        .restart local v0    # "returnKey":Lcom/eltechs/axs/Keyboard$XKey;
+        sget v1, Lcom/ewt45/exagearsupportv7/input/CHCharSupport;->currIndex:I
+
+        add-int/lit8 v1, v1, 0x1
+
+        sget-object v2, Lcom/ewt45/exagearsupportv7/input/CHCharSupport;->avaiKeyCode:[Lcom/eltechs/axs/KeyCodesX;
+
+        array-length v2, v2
+
+        rem-int/2addr v1, v2
+
+        sput v1, Lcom/ewt45/exagearsupportv7/input/CHCharSupport;->currIndex:I
+
+        .line 210
+        :cond_2b
+        :goto_2b
+        if-nez v0, :cond_31
+
+        iget-object v1, p0, Lcom/eltechs/axs/Keyboard;->UnicodeToXKeyMap:[Lcom/eltechs/axs/Keyboard$XKey;
+
+        aget-object v0, v1, p1
+
+        .end local v0    # "returnKey":Lcom/eltechs/axs/Keyboard$XKey;
+        :cond_31
         return-object v0
 
-        .line 203
-        :cond_21
-        iget-object v0, p0, Lcom/eltechs/axs/Keyboard;->UnicodeToXKeyMap:[Lcom/eltechs/axs/Keyboard$XKey;
-
-        aget-object v0, v0, p1
-
-        iget v0, v0, Lcom/eltechs/axs/Keyboard$XKey;->keysym:I
-
-        if-le v0, v3, :cond_3f
-
-        .line 204
-        iget-object v0, p0, Lcom/eltechs/axs/Keyboard;->UnicodeToXKeyMap:[Lcom/eltechs/axs/Keyboard$XKey;
-
-        aget-object v0, v0, p1
-
-        sget-object v1, Lcom/ewt45/exagearsupportv7/input/CHCharSupport;->avaiKeyCode:[Lcom/eltechs/axs/KeyCodesX;
-
-        sget v2, Lcom/ewt45/exagearsupportv7/input/CHCharSupport;->currIndex:I
-
-        aget-object v1, v1, v2
-
-        iput-object v1, v0, Lcom/eltechs/axs/Keyboard$XKey;->keycode:Lcom/eltechs/axs/KeyCodesX;
-
         .line 205
-        sget v0, Lcom/ewt45/exagearsupportv7/input/CHCharSupport;->currIndex:I
+        .restart local v0    # "returnKey":Lcom/eltechs/axs/Keyboard$XKey;
+        :cond_32
+        iget-object v1, p0, Lcom/eltechs/axs/Keyboard;->UnicodeToXKeyMap:[Lcom/eltechs/axs/Keyboard$XKey;
 
-        add-int/lit8 v0, v0, 0x1
+        aget-object v1, v1, p1
 
-        sget-object v1, Lcom/ewt45/exagearsupportv7/input/CHCharSupport;->avaiKeyCode:[Lcom/eltechs/axs/KeyCodesX;
+        iget v1, v1, Lcom/eltechs/axs/Keyboard$XKey;->keysym:I
 
-        array-length v1, v1
+        if-le v1, v3, :cond_2b
 
-        rem-int/2addr v0, v1
+        .line 206
+        iget-object v1, p0, Lcom/eltechs/axs/Keyboard;->UnicodeToXKeyMap:[Lcom/eltechs/axs/Keyboard$XKey;
 
-        sput v0, Lcom/ewt45/exagearsupportv7/input/CHCharSupport;->currIndex:I
+        aget-object v1, v1, p1
+
+        sget-object v2, Lcom/ewt45/exagearsupportv7/input/CHCharSupport;->avaiKeyCode:[Lcom/eltechs/axs/KeyCodesX;
+
+        sget v3, Lcom/ewt45/exagearsupportv7/input/CHCharSupport;->currIndex:I
+
+        aget-object v2, v2, v3
+
+        iput-object v2, v1, Lcom/eltechs/axs/Keyboard$XKey;->keycode:Lcom/eltechs/axs/KeyCodesX;
 
         .line 207
-        :cond_3f
-        iget-object v0, p0, Lcom/eltechs/axs/Keyboard;->UnicodeToXKeyMap:[Lcom/eltechs/axs/Keyboard$XKey;
+        sget v1, Lcom/ewt45/exagearsupportv7/input/CHCharSupport;->currIndex:I
 
-        aget-object v0, v0, p1
+        add-int/lit8 v1, v1, 0x1
 
-        goto :goto_20
+        sget-object v2, Lcom/ewt45/exagearsupportv7/input/CHCharSupport;->avaiKeyCode:[Lcom/eltechs/axs/KeyCodesX;
+
+        array-length v2, v2
+
+        rem-int/2addr v1, v2
+
+        sput v1, Lcom/ewt45/exagearsupportv7/input/CHCharSupport;->currIndex:I
+
+        .line 208
+        iget-object v1, p0, Lcom/eltechs/axs/Keyboard;->UnicodeToXKeyMap:[Lcom/eltechs/axs/Keyboard$XKey;
+
+        aget-object v0, v1, p1
+
+        goto :goto_2b
     .end method
-
     ```
     ::: 
 3. 在`com.eltechs.axs.Keyboard`类中，将handleUnicodeKeyType方法中调用convertUnicodeToXKey的地方改为convertUnicodeToXKey2
@@ -129,7 +156,7 @@ tags:
         invoke-direct {p0, v3}, Lcom/eltechs/axs/Keyboard;->convertUnicodeToXKey2(I)Lcom/eltechs/axs/Keyboard$XKey;
     ```
 4. 编译，签名，重装apk。进入环境后调出键盘并切换至中文输入，此时即可正常输入中文。 
-5. 这里提供一个[成品](https://wwn.lanzout.com/io7Th0eb7zzi)仅供测试，不保证任何其他功能正常，请尽量不要用于测试中文输入以外的用途。
+5. 这里提供一个[成品](https://wwn.lanzout.com/icaPi0ebkdla)仅供测试，不保证任何其他功能正常，请尽量不要用于测试中文输入以外的用途。
 
 ## 探索过程
 这次依然是运气占了很大一部分。
