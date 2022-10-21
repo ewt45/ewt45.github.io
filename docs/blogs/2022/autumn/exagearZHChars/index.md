@@ -20,6 +20,10 @@ tags:
 
 于是研究了一下，发现添加中文输入支持还是很简单的，最主要的是**手机的输入法要支持切换成中文才行**，我之前用的谷歌Gboard输入法，切中文直接闪退，只能显示英文键盘布局，后来换成了系统内置的百度输入法才能切到中文输入法。
 
+## 演示视频：
+[【安卓Exagear】修改以支持使用安卓输入法直接输入中文，无需在模拟器安装南极星输入法 ](https://www.bilibili.com/video/BV1KW4y1E7jP?share_source=copy_web&vd_source=de2377a6a91c81456918f0dc49bfbd5d)
+<iframe src="//player.bilibili.com/player.html?aid=944313799&bvid=BV1KW4y1E7jP&cid=868004364&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
 ## 将此功能添加到任意apk
 如果你掌握apk的基础修改知识，可以通过本小节的教程将此功能添加到你自己的apk中。如果你是小白，那么应该去找已经修改好的apk直接使用。
 1. 将[CHCharSupport.smali](https://wwn.lanzout.com/iJPjE0eatq6b)导入到dex中。
