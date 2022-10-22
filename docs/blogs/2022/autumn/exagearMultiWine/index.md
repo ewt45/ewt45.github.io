@@ -158,5 +158,26 @@ invoke-static {v0, v1}, Lcom/example/datainsert/exagear/mutiWine/MutiWine;->addE
 
 #添加 结束
 ```
-### 改完dex
+### 改完dex。
 改完dex之后，向数据包中添加多个版本wine（和预设WINEPREFIX）并做成数据包，在apk/assets/WinesVersionInfo.txt里写上每个wine的版本信息，在创建容器时就可以选择wine版本进行创建了。
+
+## 如何添加一个新的wine版本
+添加一个新的wine版本，大概就是这三步：
+### 将wine二进制包加入obb中
+这里只说明添加原始的wine二进制包的方法，不确定制作obb时是否需要对wine进行修改或者添加其他文件。\
+已编译好的wine二进制包可以从官网下载(https://dl.winehq.org/wine-builds/ubuntu/dists)，需要根据obb底包的ubuntu（或其他系统）的版本进行选择，以ubuntu18 i386为例，进到这里https://dl.winehq.org/wine-builds/ubuntu/dists/bionic/main/binary-i386/。然后下载对应版本(3.10,7.8这种版本号）和对应种类（devel/staging/stable）的wine.deb和wine-i386.deb这两个包（例如wine-staging_4.21~bionic_i386.deb和	wine-staging-i386_4.21~bionic_i386.deb），接下来的操作可以参考博客开头的演示视频，将两个deb中的opt和usr文件夹解压到同一个文件夹，文件夹起名叫wine4.21，然后将wine4.21文件夹添加到obb/opt中。不确定在安卓解压是否会有符号链接的问题，有条件最好在linux系统下解压。
+### 在WinesVersionInfo.txt中添加一行
+在apk/assets/WinesVersionInfo.txt中添加一行，填入三段信息，每段间用空格分隔。例如
+
+`wine4.21 /opt/wine4.21/opt/wine-staging /opt/guestcont-pattern/`
+- 第一段：wineName。自定义的名字，用于创建容器时的wine版本选择。
+- 第二段：wineInstallPath。根据刚才解压出来的文件夹放在数据包中的位置填写，请确保wineInstallPath目录下的bin文件夹中包含wine执行文件。也就是说如果将wine二进制包添加到obb中之后，wine执行文件的路径为`/opt/wine4.21/opt/wine-staging/bin/wine`，那么这一段就写`/opt/wine4.21/opt/wine-staging`。
+- 第三段：winePatternPath。预设环境（c盘），exagear默认的pattern路径是`/opt/guestcont-pattern/`，如果需要为不同的wine版本配置不同的预设环境，可以修改这个路径。
+
+### 重装apk，重新解压obb，新建环境
+修改重装apk以更新txt，重新解压obb以将新添加的wine解压到镜像目录下，新建环境以使新的installPath和patternPath生效。
+注意目前的代码有点问题，**如果修改txt中的installPath和patternPath，修改后的路径只能在新建的环境中生效，之前的环境还是用的旧路径**
+
+## 更新历史
+### 22.10.22
+更新了章节[如何添加一个新的wine版本](./#如何添加一个新的wine版本)
