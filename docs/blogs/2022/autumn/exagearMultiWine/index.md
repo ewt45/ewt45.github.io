@@ -160,11 +160,13 @@ invoke-static {v0, v1}, Lcom/example/datainsert/exagear/mutiWine/MutiWine;->addE
 改完dex之后，向数据包中添加多个版本wine（和预设WINEPREFIX），在apk/assets/WinesVersionInfo.txt里写上每个wine的版本信息，在创建容器时就可以选择wine版本进行创建了。
 
 ## 如何添加一个新的wine版本
-拥有一个支持多wine版本的apk后，就可以向其中添加任意多个wine版本了。如果本节内容对于你来说太难，那么你可能需要的是一个已经添加好多wine版本的数据包，直接使用。\
+拥有一个支持多wine版本的apk后，就可以向其中添加任意多个wine版本了。如果本节内容对于你来说太难，那么你可能需要的是一个已经添加好多wine版本的数据包，直接使用。
+
+
 添加一个新的wine版本，大概就是这三步：
 ### 将wine二进制包加入obb中
 对于数据包制作者，应该比我更清楚如何向数据包中添加一个wine
-所以这里只说明添加原始的wine二进制包的方法，不确定制作obb时是否需要对wine进行修改或者添加其他文件。\
+所以这里只说明添加原始的wine二进制包的方法，不确定制作obb时是否需要对wine进行修改或者添加其他文件。（比如高版本wine也许需要安装更多运行时依赖？）\
 已编译好的wine二进制包可以从[官网下载](https://dl.winehq.org/wine-builds/ubuntu/dists)，需要根据obb底包的系统进行选择，以ubuntu18 i386为例，[进到这里](https://dl.winehq.org/wine-builds/ubuntu/dists/bionic/main/binary-i386/)。然后下载对应版本（如4.21）和对应种类（devel/staging/stable）的wine.deb和wine-i386.deb这两个包（例如`wine-staging_4.21~bionic_i386.deb`和	`wine-staging-i386_4.21~bionic_i386.deb`），接下来的操作可以参考博客开头的演示视频，将两个deb中的opt和usr文件夹解压到同一个文件夹（比如叫wine4.21)，然后将wine4.21文件夹添加到obb/opt中。不确定在安卓解压是否会有符号链接的问题，有条件最好在linux系统下解压。
 ### 添加预置环境（可选）
 预置环境主要是预置c盘内容、注册表项之类的，数据包制作者应该比我更清楚。如果不需要为此wine版本单独做一份预置环境，那么就用默认的/opt/guestcont-pattern里的也行。

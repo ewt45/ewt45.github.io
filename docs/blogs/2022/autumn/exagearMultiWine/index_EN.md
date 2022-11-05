@@ -166,7 +166,7 @@ After the modification of dex, add some wines to obb(and their presets) and add 
 With an apk that supports multiwine, you can add many versions of wine by your choice. If you have difficulty understanding what is going on in this section, maybe you need to get an obb with multiple versions of wine already added, and just use it.
 
 ### add wine binary files into obb 
-If you have the experience of creating and patching exagear obb, then you know better than me about how to add a wine. Here I'll only give a basic way to add orignal binary wine files. I'm not sure if more operations are required.
+If you have the experience of creating and patching exagear obb, then you know better than me about how to add a wine. Here I'll only give a basic way to add orignal binary wine files. I'm not sure if more operations are required(Higher versions of wine for example, need more running dependencies maybe? ).
 
 The compiled bianry package of wine can be downloaded from
 [official website](https://dl.winehq.org/wine-builds/ubuntu/dists). They vary in operate systems. If the obb's linux system is ubuntu18 i386 for example, go into the [corresponding dir](https://dl.winehq.org/wine-builds/ubuntu/dists/bionic/main/binary-i386/) and choose the version you like and download the two deb —— wine.deb and wine-i386.deb(e.g. `wine-staging_4.21~bionic_i386.deb`	and `wine-staging-i386_4.21~bionic_i386.deb`). The next steps are illustrated int the demo video. Extract opt and usr folder from these two debs to a new folder named wine4.21(or whatever), and add folder wine4.21 into obb. Not sure if there is symbol link problem under android system, so extract them in linux system if permitted.
