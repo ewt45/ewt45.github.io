@@ -196,6 +196,7 @@ import { UserOwn, MKTAllData, queryedData } from "./hold";
 import FileSaver from "file-saver";
 import { UploadRawFile } from "element-plus";
 import { file } from "@babel/types";
+import { logicAnd } from "@vueuse/shared";
 /**数据json courses,drivers,gliders,karts,skills,tour*/
 const mainJson = ref<MKTAllData>(); //reactive之后再说
 const userOwn = reactive<UserOwn>(new UserOwn());
@@ -253,21 +254,21 @@ const clickImport = (files: UploadRawFile) => {
         value.Key == item.Key ? true : false
       );
       item.Level = ifFind ? ifFind.Level : 0;
-      if(!ifFind) console.log("该卡牌等级未记录，记为0："+item.Key)
+      if (!ifFind) console.log("该卡牌等级未记录，记为0：" + item.Key);
     });
     userOwn.gliders.forEach((item) => {
       let ifFind = userOwnNew.gliders.find((value) =>
         value.Key == item.Key ? true : false
       );
       item.Level = ifFind ? ifFind.Level : 0;
-      if(!ifFind) console.log("该卡牌等级未记录，记为0："+item.Key)
+      if (!ifFind) console.log("该卡牌等级未记录，记为0：" + item.Key);
     });
     userOwn.karts.forEach((item) => {
       let ifFind = userOwnNew.karts.find((value) =>
         value.Key == item.Key ? true : false
       );
       item.Level = ifFind ? ifFind.Level : 0;
-      if(!ifFind) console.log("该卡牌等级未记录，记为0："+item.Key)
+      if (!ifFind) console.log("该卡牌等级未记录，记为0：" + item.Key);
     });
 
     // for (let i = 0; i < userOwn.karts.length; i++) {
@@ -292,6 +293,7 @@ const clickQueryDrivers = (type: string) => {
   }
   let coverdCourseSet = new Set<string>(); //已覆盖的三级赛道
   let darkCardArr = new queryedData(); //未拥有的人物
+  let updateToCoverMap = new Map<string, string>(); //拥有的卡牌升级后，可以变为三级的赛道，k为赛道，v为卡牌
   if (!mainJson.value || !userOwn) return;
 
   let jsonData = mainJson.value[type];
@@ -311,6 +313,24 @@ const clickQueryDrivers = (type: string) => {
     jsonData[i].CourseGoodAtDetail.forEach((o) => {
       if (o.PromotionLevel > 0 && o.PromotionLevel <= userOwn[type][i].Level) {
         coverdCourseSet.add(o.Key);
+        updateToCoverMap.delete(
+          mainJson.value?.courses[o.Key].Translations.CNzh
+        );
+      } else if (o.PromotionLevel > 0) {
+        //如果没到等级，加到可升级map中，然后下一步的时候把map的数据和set合并
+        let translation = mainJson.value?.courses[o.Key].Translations.CNzh;
+        let oldValue = updateToCoverMap.get(translation);
+        updateToCoverMap.set(
+          translation,
+          oldValue
+            ? oldValue
+            : " :" +
+                " " +
+                jsonData[i].Translations.CNzh +
+                "lv" +
+                o.PromotionLevel +
+                ","
+        );
       }
     });
   }
@@ -326,6 +346,14 @@ const clickQueryDrivers = (type: string) => {
         darkCardArr.courses.add(mainJson.value?.courses[str].Translations.CNzh); //当前所有未覆盖的赛道
       }
     });
+    //还是算上吧
+    jsonData[i].CourseGoodAtDetail.forEach((o) => {
+      if (o.PromotionLevel > 0 && !coverdCourseSet.has(o.Key)) {
+        countNewCover.push(mainJson.value?.courses[o.Key].Translations.CNzh+" lv"+o.PromotionLevel);
+        //其实全部的未覆盖赛道只从三级那取就行了，一条赛道肯定有三级原生的卡片，所以这里二级的不管了
+      }
+
+    });
     //加入未拥有人物的数组
     darkCardArr.cards.push({
       Key: jsonData[i].Key,
@@ -333,6 +361,19 @@ const clickQueryDrivers = (type: string) => {
       Translation: jsonData[i].Translations.CNzh,
     });
   }
+
+
+
+  //将可以升级的map中的字符串与darkCardArr.course混合
+  updateToCoverMap.forEach((value, key, map) => {
+    //如果这确实是一条未拥有的赛道（update包含了已拥有的赛道）
+    if (darkCardArr.courses.delete(key)) darkCardArr.courses.add(key + value);
+  });
+  // console.log("加入map之前的courses"+darkCardArr.courses)
+  // darkCardArr.courses.forEach(str=>{
+  //   str += updateToCoverMap.get(str);
+  // })
+  // console.log("加入map之后的courses"+darkCardArr.courses)
 
   //根据覆盖赛道数排序
   darkCardArr.cards.sort((a, b) => {
