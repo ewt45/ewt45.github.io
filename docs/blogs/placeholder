@@ -1,0 +1,36 @@
+<!-- ---
+date: '2022-12-3 13:31:27'
+title: aaaa
+categories: 
+ - c1
+ - c2
+tags:
+ - t1
+ - t2
+--- -->
+
+[[TOC]]
+## 前言
+
+
+## 演示视频：
+[【Exagear】鼠标光标变为很小的叉 解决办法](https://www.bilibili.com/video/BV1oe4y1M7Go/?share_source=copy_web&vd_source=de2377a6a91c81456918f0dc49bfbd5d)
+<!-- <iframe src="//player.bilibili.com/player.html?aid=648320384&bvid=BV1oe4y1M7Go&cid=910849854&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe> -->
+
+## 将此功能添加到任意apk
+如果你掌握apk的基础修改知识，可以通过本小节的教程将此功能添加到你自己的apk中。如果你是小白，那么应该去找已经修改好的apk直接使用。
+
+1. 用MT管理器编辑dex，
+
+2. ...
+
+:::details 点击展开代码
+:::
+
+3. 编译dex，重装apk。再次启动游戏，自定义光标应该就会显示出来了。
+
+4. [这是一个已经改好的apk](https://wwqv.lanzout.com/iA2GC0hnjn2f)，请尽量仅用作本博客所介绍的功能测试用途，因为不保证其他功能正常工作。
+## 探索过程
+本节为自用，主要记录实现java代码的过程。
+## 总结
+- aaa
