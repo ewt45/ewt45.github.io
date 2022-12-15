@@ -27,7 +27,7 @@ tags:
 
 长这样
 
-![图1](./res/1.png)
+![图1](./res/1.png)![图2](./res/2.png)
 ## 演示视频：
 <!-- 
 [【Exagear】鼠标光标变为很小的叉 解决办法](https://www.bilibili.com/video/BV1oe4y1M7Go/?share_source=copy_web&vd_source=de2377a6a91c81456918f0dc49bfbd5d)
