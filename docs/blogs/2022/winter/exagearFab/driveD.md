@@ -11,7 +11,7 @@ tags:
 [[TOC]]
 ## 前言
 允许用户手动指定wine的d盘对应安卓文件路径的位置。
-获取sd卡方法参照了hugo的apk。最早能找到的出处应该是这个[印尼大神 VividOtg 的视频](https://www.youtube.com/watch?v=QLD7tqMWK9s)
+获取sd卡方法参照了hugo的apk。最早能找到的出处应该是这个~~[印尼大神 VividOtg 的视频](https://www.youtube.com/watch?v=QLD7tqMWK9s)~~ 也许是[gfoxsh](https://4pda.to/forum/index.php?showtopic=992239&st=1360#entry98298500)
 
 其实在写代码的过程中发现了这个Exagear自带的Action类`CreatePutYourApplicationsHereDirectory`，不过没看见调用的地方。也没细研究了。
 
@@ -162,5 +162,5 @@ CreateLaunchConfiguration中是建立cdez盘符号链接的。在建立d盘符�
 ## 总结
 - wine切换盘符的路径其实就是更换软链接。这么一看甚至没必要改安卓dex了=-=算了反正有用户友好提示也不错
 - TextInputLayout挺不错的，自带标题，也可以加edittext
-- 写完这篇博客才去搜的获取sd卡方法原作者，（应该是vividotg）看他视频标题还有个获取u盘的方法，结果看视频是sd卡和u盘同时存在，读的是sd卡，sd卡弹出就读u盘。猜测那个方法获取到的数组，第二个元素往后都是连接的外部存储设备，只不过懒得再测试了。。。
+- 写完这篇博客才想起来去找一下获取sd卡方法的出处，看到vividotg视频标题还有个获取u盘的方法，结果看视频是sd卡和u盘同时存在，读的是sd卡，sd卡弹出就读u盘。猜测那个方法获取到的数组，第二个元素往后都是连接的外部存储设备，只不过懒得再测试了。。。
 
