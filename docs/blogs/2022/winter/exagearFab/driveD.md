@@ -11,7 +11,7 @@ tags:
 [[TOC]]
 ## 前言
 允许用户手动指定wine的d盘对应安卓文件路径的位置。
-获取sd卡方法参照了hugo的apk。最早能找到的出处应该是这个~~[印尼大神 VividOtg 的视频](https://www.youtube.com/watch?v=QLD7tqMWK9s)~~ 也许是[gfoxsh](https://4pda.to/forum/index.php?showtopic=992239&st=1360#entry98298500)
+获取sd卡方法参照了hugo的apk。最早能找到的出处应该是这个~~https://www.youtube.com/watch?v=QLD7tqMWK9s~~ 应该是[gfoxsh](https://4pda.to/forum/index.php?showtopic=992239&st=1360#entry98298500)
 
 其实在写代码的过程中发现了这个Exagear自带的Action类`CreatePutYourApplicationsHereDirectory`，不过没看见调用的地方。也没细研究了。
 
