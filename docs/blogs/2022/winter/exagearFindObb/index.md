@@ -107,7 +107,7 @@ tags:
 
     ```
 
-5. 添加[这个压缩包](https://wwqv.lanzout.com/iUMPO0lm9r3i)中的全部类到dex中。
+5. 添加[这个压缩包](https://wwqv.lanzout.com/iBQ5b0lo5nfe)中的全部类到dex中。
 
 3. 编译dex，重装apk。
 
