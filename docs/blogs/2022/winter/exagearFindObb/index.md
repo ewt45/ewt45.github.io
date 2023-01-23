@@ -15,6 +15,10 @@ tags:
 
 ![gif1](./res/2.gif)
 
+:::warning
+由于安卓限制，安卓11及以上无法使用文件选择器查看Android/data和Android/obb目录下的文件。
+:::
+
 ## 演示视频：
 [我的合集和视频列表 > exagear](https://space.bilibili.com/29460173/channel/collectiondetail?sid=598657)
 <!-- <iframe src="//player.bilibili.com/player.html?aid=648320384&bvid=BV1oe4y1M7Go&cid=910849854&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe> -->
@@ -176,4 +180,4 @@ add传入id。show显示fragment，然后设置视图visibility为visible，再�
 ## 总结
 - 写一个fragment，显示一个按钮，用来选择文件。
 - 启动加载界面的视图有个没显示过的子视图，正好可以拿来挂载fragment。
-
+- 由于安卓限制，安卓11及以上无法使用文件选择器查看Android/data和Android/obb目录下的文件。
