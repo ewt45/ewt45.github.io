@@ -14,11 +14,11 @@ tags:
 
 
 ## 演示视频：
-[【Exagear】鼠标光标变为很小的叉 解决办法](https://www.bilibili.com/video/BV1oe4y1M7Go/?share_source=copy_web&vd_source=de2377a6a91c81456918f0dc49bfbd5d)
+[我的合集和视频列表 > exagear](https://space.bilibili.com/29460173/channel/collectiondetail?sid=598657)
 <!-- <iframe src="//player.bilibili.com/player.html?aid=648320384&bvid=BV1oe4y1M7Go&cid=910849854&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe> -->
 
 ## 将此功能添加到apk
-如果你掌握apk的基础修改知识，可以通过本小节的教程将此功能添加到你自己的apk中。如果你是小白，那么应该去找已经修改好的apk直接使用。另外也可以尝试“自助方式”一键修改apk（不稳定）。
+如果你掌握apk的基础修改知识，可以通过本小节的教程将此功能添加到你自己的apk中。如果你是小白，那么应该去找已经修改好的apk直接使用。如果你不会改apk又不想用现有的已改好的apk，也可以尝试“自助方式”一键修改apk（不稳定）。
 
 :::warning
 以下的修改示例代码，包名使用鲁大师包名`Lcom/ludashi/benchmark/`，请注意根据实际情况自行调整。
@@ -39,7 +39,11 @@ tags:
 ### 已改好apk
 无
 ### 自助修改
-待补充
+使用ED自助补丁，用户完全不需要手动编辑smali，只需点一个按钮，等待修改完成后安装新的apk即可。
+
+[下载地址](https://github.com/ewt45/EDPatch/releases)
+
+视频介绍
 
 ## 探索过程
 本节为自用，主要记录实现java代码的过程。
