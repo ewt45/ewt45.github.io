@@ -122,7 +122,7 @@ tags:
 
 [下载地址](https://github.com/ewt45/EDPatch/releases)
 
-视频介绍
+[视频介绍](https://www.bilibili.com/video/BV1mY411X7Nn/)
 
 <!-- 4. [这是一个已经改好的apk](https://wwqv.lanzout.com/iA2GC0hnjn2f)，请尽量仅用作本博客所介绍的功能测试用途，因为不保证其他功能正常工作。 -->
 ## 探索过程
