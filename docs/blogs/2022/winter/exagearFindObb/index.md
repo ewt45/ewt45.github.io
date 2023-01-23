@@ -76,6 +76,12 @@ tags:
     ```
     :::
 
+3. 还是ZipInstallerObb类，在findObbFile()方法中，结尾`return-object v0`之前添加代码
+    ```smali
+    #在return-object v0之前添加这行
+    sget-object v0, Lcom/example/datainsert/exagear/obb/SelectObbFragment;->obbFile:Ljava/io/File;
+    ```
+
 3. 在`UnpackExagearImageObb$1.smali`类中（注意名字带`$1`），`unpackingCompleted`方法中，开头添加一句，用于在解压完成后删除临时obb。
     ```smali
     invoke-static {}, Lcom/example/datainsert/exagear/obb/SelectObbFragment;->delCopiedObb()V
