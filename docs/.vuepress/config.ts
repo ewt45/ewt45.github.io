@@ -34,14 +34,14 @@ export default defineUserConfig({
     //reco1 右侧栏，当前文章的章节
     subSidebar: 'auto',
     //顶部导航栏
-    navbar: [
-      { text: '首页', link: '/', icon: 'reco-home' },
-      {
-        text: '应用', link: '/', children: [
-          { text: '批量生成b站合集的分p封面图', link: '/blogs/app/batchCover' }
-        ]
-      },
-    ],
+    // navbar: [
+    //   { text: '首页', link: '/', icon: 'reco-home' },
+    //   {
+    //     text: '应用', link: '/', children: [
+    //       { text: '批量生成b站合集的分p封面图', link: '/blogs/app/batchCover' }
+    //     ]
+    //   },
+    // ],
     componentsDir: './docs/.vuepress/components',
 
   }),
