@@ -13,6 +13,8 @@ adb一直都有无线调试的功能。只不过在以前，需要先用usb连�
 
 安卓11及以上，开发者选项里有个无线调试，开启这个之后，第一次也不需要usb连接，直接用无线配对（需要同一网络）即可。
 
+[视频演示](https://www.bilibili.com/video/BV1ty4y1d7es/)
+
 ## 使用方法
 [官方文档](https://developer.android.com/studio/command-line/adb#connect-to-a-device-over-wi-fi)
  
