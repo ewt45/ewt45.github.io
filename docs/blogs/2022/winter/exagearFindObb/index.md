@@ -24,8 +24,16 @@ tags:
 <!-- <iframe src="//player.bilibili.com/player.html?aid=648320384&bvid=BV1oe4y1M7Go&cid=910849854&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe> -->
 
 ## 将此功能添加到apk
-如果你掌握apk的基础修改知识，可以通过本小节的教程将此功能添加到你自己的apk中。如果你是小白，那么应该去找已经修改好的apk直接使用。如果你不会改apk又不想用现有的已改好的apk，也可以尝试“自助方式”一键修改apk（不稳定）。
+推荐使用ED自助补丁一键修改。\
+如果你掌握apk的基础修改知识，也可以照下方教程手动修改，但本页面提供的文件可能比ED自助补丁要旧。\
+如果ED自助补丁也用不明白，那么应该去寻找已经修改好的apk直接使用。
 
+### 自助修改
+使用ED自助补丁，用户完全不需要手动编辑smali，只需点一个按钮，等待修改完成后安装新的apk即可。
+
+[下载地址](https://github.com/ewt45/EDPatch/releases)
+
+[视频介绍](https://www.bilibili.com/video/BV1mY411X7Nn/)
 <!-- :::warning
 以下的修改示例代码，包名使用鲁大师包名`Lcom/ludashi/benchmark/`，请注意根据实际情况自行调整。
 ::: -->
@@ -117,12 +125,6 @@ tags:
 
 ### 已改好apk
 无
-### 自助修改
-使用ED自助补丁，用户完全不需要手动编辑smali，只需点一个按钮，等待修改完成后安装新的apk即可。
-
-[下载地址](https://github.com/ewt45/EDPatch/releases)
-
-[视频介绍](https://www.bilibili.com/video/BV1mY411X7Nn/)
 
 <!-- 4. [这是一个已经改好的apk](https://wwqv.lanzout.com/iA2GC0hnjn2f)，请尽量仅用作本博客所介绍的功能测试用途，因为不保证其他功能正常工作。 -->
 ## 探索过程

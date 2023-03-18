@@ -136,7 +136,21 @@ static public void showInputCorrect(AppCompatActivity a){
     - 改dex时，smali语句中传入的参数也记得用v7包的acitivity。
 
 
-## 解决方案-动手操作
+# 将此功能添加到apk
+推荐使用ED自助补丁一键修改。\
+如果你掌握apk的基础修改知识，也可以照下方教程手动修改，但本页面提供的文件可能比ED自助补丁要旧。\
+如果ED自助补丁也用不明白，那么应该去寻找已经修改好的apk直接使用。
+
+### 自助修改
+使用ED自助补丁，用户完全不需要手动编辑smali，只需点一个按钮，等待修改完成后安装新的apk即可。
+
+[下载地址](https://github.com/ewt45/EDPatch/releases)
+
+[视频介绍](https://www.bilibili.com/video/BV1mY411X7Nn/)
+<!-- :::warning
+以下的修改示例代码，包名使用鲁大师包名`Lcom/ludashi/benchmark/`，请注意根据实际情况自行调整。
+::: -->
+### 手动修改
 - 所需工具：mt管理器
 1. 导入自己写的调出键盘方法。\
 打开mt管理器的dex编辑器++，在浏览界面长按任意路径，导入[两个smali](https://pan.baidu.com/s/1nfZYF8PdIMn_JLvoOlVCeg?pwd=n4gm)。
