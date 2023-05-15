@@ -2,10 +2,11 @@
 date: '2023-5-15 15:45:50'
 title: exagear 使用gpu渲染后光标无法显示的解决办法 v2
 categories: 
+ - exagear
  - 技术
 tags:
- - termux
- - proot
+ - windowAttributes
+ - x11
 ---
 
 ## 前言
