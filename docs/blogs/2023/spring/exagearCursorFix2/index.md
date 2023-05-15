@@ -106,6 +106,14 @@ public Cursor getCursor() {
 }
 ```
 
+### 关于鼠标点击位置偏移问题
+又尝试了一番，但目前仍然找不出鼠标位置偏移的解决办法。
+
+目前发现可能存在的问题有：
+- Window类实例有个属性是WindowAttributes类，其属性doNotPropagate是禁止向父窗口传递事件。Window的XClientWindowListener有个属性是eventMask用于限制该窗口允许处理的事件。修改光标位置可能会根据这两个mask来判断是否可以移动，若这两个mask值不正确则可能无法正常处理。详细信息可以看该[参考文档](https://www.x.org/releases/current/doc/xproto/x11protocol.html#requests:ChangeWindowAttributes)
+- 缺少某些扩展协议的request函数的实现（如XTEST），如果固定光标位置通过扩展协议实现，则可能无法正常处理
+- 窗口Focus相关的处理不完善。例如Event类型缺少FocusIn、Out事件的实现。如果固定光标位置通过取消游戏窗口焦点实现，则可能无法正常处理
+
 ## 总结
 1. 参考资料：[有关window属性的介绍和对其修改的request](https://www.x.org/releases/current/doc/xproto/x11protocol.html#requests:ChangeWindowAttributes)
 2. 这种方式理论上是恢复了非gpu渲染时的获取cursor流程。实际测试发现，无法正常显示动态光标样式，会显示为黑色的静态图片，应该是exa的缺陷（毕竟原本就不支持gpu渲染）。
