@@ -17,9 +17,8 @@ tags:
 ![Alt text](./res/4.gif)
 
 ## 演示视频：
-[我的合集和视频列表 > exagear](https://space.bilibili.com/29460173/channel/collectiondetail?sid=598657)
-<!-- <iframe src="//player.bilibili.com/player.html?aid=648320384&bvid=BV1oe4y1M7Go&cid=910849854&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe> -->
-
+[【Exagear】借助app快捷方式，直接进入环境内部 （ED自助补丁v0.0.3更新）](https://www.bilibili.com/video/BV1QM4y1v7RG/?share_source=copy_web&vd_source=de2377a6a91c81456918f0dc49bfbd5d
+)
 ## 将此功能添加到apk
 推荐使用ED自助补丁一键修改。\
 如果你掌握apk的基础修改知识，也可以照下方教程手动修改，但本页面提供的文件可能比ED自助补丁要旧。\
