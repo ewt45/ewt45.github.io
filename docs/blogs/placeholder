@@ -37,7 +37,7 @@ tags:
 [视频介绍](https://www.bilibili.com/video/BV1mY411X7Nn/)
 
 ### 手动修改
-1. 用MT管理器编辑dex，
+1. 用MT管理器编辑dex，将此压缩包中的全部smali添加到dex中。注意其内容如果有包名相关的请自行替换。 
 
 2. ...
 
