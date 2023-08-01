@@ -4,6 +4,10 @@
 Xegw is developed by Twaik，now it's completely same with termux:x11.
 
 ## Modify apk
+
+:::warning
+apk of exagear should be none-xegw, in case what are going to be added inflict with xegw 1.0.
+:::
 ### smali need to be replaced/added
 ```
 com.termux.x11.*
@@ -112,4 +116,5 @@ Add: an activity and a service.
 ## Test results
 
 Install the modified apk, it should open normally and display the screen normally after starting the container.
-If it only shows black screen and arrow mouse, you need to add `-legacy-drawing` paramete ([see termux:x11 issue for details](https://github.com/termux/termux-x11/issues/375)). You can add float action button with EDPatch v0.0.6 and above, checking the Xegw option. Or modify com.termux.x11.CmdEntryPoint class to pass this parameter when calling start(String[]).
+- If it only shows black screen and arrow mouse, you need to add `-legacy-drawing` paramete ([see termux:x11 issue for details](https://github.com/termux/termux-x11/issues/375)). You can add float action button with EDPatch v0.0.6 and above, checking the Xegw option. Or modify com.termux.x11.CmdEntryPoint class to pass this parameter when calling start(String[]).
+- The keys and mouses input require xkb. Please make sure there's `/usr/share/X11//xkb` in obb.

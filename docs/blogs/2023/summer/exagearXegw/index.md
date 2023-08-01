@@ -14,6 +14,11 @@ Xegw作者为Twaik，现在与termux:x11完全相同。
 
 [English Version](./index_en.html)
 ## 修改apk
+
+:::warning
+exagear的apk应使用未添加过xegw的，以防与xegw1.0发生冲突。
+:::
+
 ### 直接替换/添加的smali
 ```
 com.termux.x11.*
