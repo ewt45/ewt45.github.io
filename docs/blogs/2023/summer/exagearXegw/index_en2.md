@@ -90,7 +90,11 @@ Attention:
         ```
 
 ### native libs (.so)
-Add：apk/lib/armeabi-v7a/libXlorie.so
+Add：
+```
+apk/lib/armeabi-v7a/libvirgl_test_server.so
+apk/lib/armeabi-v7a/libXlorie.so
+```
 
 Extract the .so file from downloaded apk.
 
@@ -117,4 +121,4 @@ Add: an activity and a service.
 
 Install the modified apk, it should open normally and display the screen normally after starting the container.
 - If it only shows black screen and arrow mouse, you need to add `-legacy-drawing` paramete ([see termux:x11 issue for details](https://github.com/termux/termux-x11/issues/375)). You can add float action button with EDPatch v0.0.6 and above, checking the Xegw option. Or modify com.termux.x11.CmdEntryPoint class to pass this parameter when calling start(String[]).
-- The keys and mouses input require xkb. Please make sure there's `/usr/share/X11//xkb` in obb.
+- The keys and mouses input require xkb. Please make sure there's `/usr/share/X11/xkb` in obb.

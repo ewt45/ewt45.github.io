@@ -101,7 +101,11 @@ com.example.datainsert.exagear.RR
         ```
 
 ### native库 (.so)
-添加：apk/lib/armeabi-v7a/libXlorie.so
+添加：
+```
+apk/lib/armeabi-v7a/libvirgl_test_server.so
+apk/lib/armeabi-v7a/libXlorie.so
+```
 
 下载apk后提取其中so即可。
 
@@ -128,5 +132,5 @@ com.example.datainsert.exagear.RR
 
 安装修改后的apk，可以正常打开，启动容器后正常显示画面。
 - 若只显示黑屏和箭头鼠标，则需要添加`-legacy-drawing`参数启动（[详见termux:x11的issue](https://github.com/termux/termux-x11/issues/375)）。可以用ED自助补丁v0.0.6及以上版本添加悬浮操作按钮，在Xegw选项中勾选。或者修改com.termux.x11.CmdEntryPoint类，在调用start(String[])的时候传入该参数。
-- 目前termux:x11需要xkb实现按键和鼠标输入。所以请确保数据包包含xkb （`/usr/share/X11//xkb`）
+- 目前termux:x11需要xkb实现按键和鼠标输入。所以请确保数据包包含xkb （`/usr/share/X11/xkb`）
 
