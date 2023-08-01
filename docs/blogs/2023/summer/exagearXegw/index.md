@@ -1,6 +1,6 @@
 ---
 date: '2023-8-1 10:41:39'
-title: exagear 移植Xegw x11服务端（termux:x11）
+title: exagear 移植Xegw 2.0 x11服务端（termux:x11）
 categories: 
  - exagear
 tags:
