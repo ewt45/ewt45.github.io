@@ -68,9 +68,9 @@ linux上wine共存的方法参考了[参考教程](https://askubuntu.com/a/11932
 
 ### 我自己写的类
 [下载地址](https://wwn.lanzout.com/iduTq0dmf7cf)。将压缩包中全部类添加到dex中即可
-### ManagerContainersFragment类
+### ManageContainersFragment类
 - `onOptionsItemSelected`方法整个删掉。
-- `onCreateOptionMenu`方法，注释掉原有语句，添加
+- `onCreateOptionsMenu`方法，注释掉原有语句，添加
     ```smali
     #修改 调用自己的方法设置菜单，传入menu和task实例
     invoke-static {p1, p0}, Lcom/example/datainsert/exagear/mutiWine/MutiWine;->setOptionMenu(Landroid/view/Menu;Lcom/eltechs/ed/fragments/ManageContainersFragment;)V
