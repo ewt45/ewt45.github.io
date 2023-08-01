@@ -15,7 +15,7 @@ com.eltechs.axs.configuration.startup.actions.WaitForXClientConnection
 com.eltechs.axs.environmentService.components.XServerComponent
 com.eltechs.axs.widgets.viewOfXServer.ViewOfXServer
 com.eltechs.axs.xserver.Pointer
-com.eltechs.axs.xserver.Keyboard
+com.eltechs.axs.Keyboard
 com.example.datainsert.exagear.QH
 com.example.datainsert.exagear.RR
 ```
