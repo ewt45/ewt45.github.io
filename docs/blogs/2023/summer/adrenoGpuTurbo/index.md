@@ -16,8 +16,9 @@ tags:
 
 ![图1](./res/1.png)
 
-本来想着应该挺复杂，就一直没研究。后来又被催了一次，去github看了一下源码，发现核心是调用了一个叫`adrenotools_set_turbo(bool);`的函数。\
-又顺藤摸瓜发现该函数属于另外一个项目`libadrenotrools`，该项目的作者是bylaws，前ns模拟器开发者，现在在搞cassia（pc模拟器）。
+去github看了一下源码，发现核心是调用了一个叫`adrenotools_set_turbo(bool);`的函数。该函数属于另外一个项目`libadrenotrools`，该项目的作者是bylaws，ns模拟器skyline开发者之一。
+
+本文记录了android studio + cmake 编译该项目，并在无root情况下观察gpu频率。
 
 ## libadrenotools介绍
 项目地址：https://github.com/bylaws/libadrenotools
