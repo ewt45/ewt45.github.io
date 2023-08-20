@@ -8,6 +8,17 @@ Xegw is developed by Twaik，now it's completely same with termux:x11.
 :::warning
 apk of exagear should be none-xegw, in case what are going to be added inflict with xegw 1.0.
 :::
+
+### patcher
+here provides a patcher.apk ([download link. password:7bz1](https://wwqv.lanzout.com/b013cni8b)). the smali, so .etc files required in the following steps, should be extracted from it. **this apk is not able to be installed directly**
+
+update histroy:
+- 23.08.20: **xegw 2.1**
+    - feature：sync termux-x11(08.16)，support dri3, is able to use turnip patched by xmem, no need of MESA_VK_WSI_DEBUG=sw。
+    - patcher: xegw_2.1_patcher_23.08.19~tx11_23.08.16.apk. difference: libXlorie.so
+- 23.08.01: **xegw 2.0**
+    - patcher: xegw_2.0_patcher_23.08.01~tx11_23.08.01.apk
+
 ### smali need to be replaced/added
 ```
 com.termux.x11.*
@@ -20,13 +31,11 @@ com.example.datainsert.exagear.QH
 com.example.datainsert.exagear.RR
 ```
 
-After downloading the apk, extract the corresponding smali from the dex.
+After downloading the patcher apk, extract the corresponding smali from the dex.
 Attention:
 - When it comes to package name, the ones provided in this apk are `com.eltechs.ed`, please modify them according to the actual situation.
 - When extracting smali, please pay attention to extract its dependent smali together, the format is `class name + $ + other text.smali`. For example, if you extract `RR.smali`, there may be `RR$1.smali`, `RR$ExternalSyntheticLambda0.smali` should also be extracted together.
 
-
-[download link](https://wwqv.lanzout.com/iKdw81428yxi)：https://wwqv.lanzout.com/iKdw81428yxi
 
 ### smali need to be edited
 
@@ -96,9 +105,8 @@ apk/lib/armeabi-v7a/libvirgl_test_server.so
 apk/lib/armeabi-v7a/libXlorie.so
 ```
 
-Extract the .so file from downloaded apk.
+Extract the .so file from patcher apk.
 
-[download link](https://wwqv.lanzout.com/iKdw81428yxi)：https://wwqv.lanzout.com/iKdw81428yxi
 ### AndroidManifest.xml
 Add: an activity and a service.
 ```xml

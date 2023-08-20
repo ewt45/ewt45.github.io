@@ -13,11 +13,23 @@ tags:
 Xegw作者为Twaik，现在与termux:x11完全相同。
 
 [English Version](./index_en.html)
+
 ## 修改apk
 
 :::warning
 exagear的apk应使用未添加过xegw的，以防与xegw1.0发生冲突。
 :::
+
+### 模版apk
+提供一个模版 patcher.apk ([点击下载 密码:7bz1](https://wwqv.lanzout.com/b013cni8b))，下文需要用到的smali，so等文件均从此apk中提取。**此apk不可直接安装使用**
+
+更新历史：
+- 23.08.20: **xegw 2.1**
+    - 特点：同步termux-x11(08.16)，支持dri3，可以使用xmem修改过的turnip，无需MESA_VK_WSI_DEBUG=sw。
+    - 对应patcher: xegw_2.1_patcher_23.08.19~tx11_23.08.16.apk. 变化: libXlorie.so
+- 23.08.01: **xegw 2.0**
+    - 对应patcher: xegw_2.0_patcher_23.08.01~tx11_23.08.01.apk
+
 
 ### 直接替换/添加的smali
 ```
@@ -30,13 +42,10 @@ com.eltechs.axs.Keyboard
 com.example.datainsert.exagear.QH
 com.example.datainsert.exagear.RR
 ```
-下载apk后，从dex中提取对应的smali。
+下载模版apk后，从dex中提取对应的smali。
 注意：
 - 涉及到包名的，本apk提供的均为`com.eltechs.ed`，请根据实际情况自行修改。
 - 提取smali时，注意一并提取其附属smali，格式为 `类名 + $ + 其他文字.smali`。例如提取`RR.smali`, 可能存在`RR$1.smali`, `RR$ExternalSyntheticLambda0.smali`也要一并提取。
-
-
-[下载地址](https://wwqv.lanzout.com/iKdw81428yxi)：https://wwqv.lanzout.com/iKdw81428yxi
 
 ### 需要编辑的smali
 `StartupActivity，XServerDisplayActivity, AXSEnvironment xserver.Keyboard`。需要编辑dex中对应smali。
@@ -107,9 +116,8 @@ apk/lib/armeabi-v7a/libvirgl_test_server.so
 apk/lib/armeabi-v7a/libXlorie.so
 ```
 
-下载apk后提取其中so即可。
+下载模版apk后提取其中so即可。
 
-[下载地址](https://wwqv.lanzout.com/iKdw81428yxi)：https://wwqv.lanzout.com/iKdw81428yxi
 ### AndroidManifest.xml
 添加一个activity和一个service
 ```xml
