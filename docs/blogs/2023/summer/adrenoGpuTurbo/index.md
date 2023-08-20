@@ -113,6 +113,7 @@ https://developer.qualcomm.com/software/snapdragon-profiler ，可以无root监�
 
 ----
 结论：
+- 设备要求：高通gpu，安卓9+，arm64环境
 - 测试结果存疑。实时监测 显示gpu没有达到最高频率，抓取历史十秒记录 显示gpu达到最高频率。
 - 就实际情况而言，找了两个人测试exagear，对游戏帧数提升几乎没有。猜测原因：
     - 使用的exa apk都是鲁大师伪装包名，即使不使用adrenotools，可能也已经在系统识别到鲁大师包名时提升为最大频率了。
