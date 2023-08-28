@@ -1,6 +1,6 @@
 ---
 date: '2023-8-27 16:55:22'
-title: 在exagear中使用winlator的alsa插件，解决爆音问题
+title: 在exagear中使用winlator的alsa插件
 categories: 
  - exagear
 tags:
@@ -51,6 +51,15 @@ winlator自己实现了一个alsa的插件，在容器设置中，将dx组件 - 
 ```
 
 ## 测试结果
-- 测试游戏-镜之边缘，exa原有的alsa爆音问题得以解决。
-- dll必须设置native。如果设置成native,builtin，winlator alsa不会生效，还是会爆音。
-- 不确定是缺解码库，还是dsound.dll被替换过的原因，还是其他原因，在dll设置为native时，游戏内播放视频（本地也存储的是视频格式）时无法播放视频声音，dll设置为native,builtin的时候可以播放视频声音，但winlator alsa就无法生效，出现爆音。
+- 测试游戏-镜之边缘，wine7.0.2
+
+先将system32中的dsound.dll设置为纯净wineprefix中的dll（也就是builtin的dll？）。
+
+- winlator alsa，dll为native,builtin时，和exa一样爆音，视频声音正常。dll为native时，不爆音，但无法播放视频声音等。
+- pulseaudio，dll为native,builtin时，不爆音 ，视频声音正常。dll为native时，不爆音，缺少视频声音。
+- exagear alsa，dll为native,built时，爆音，视频声音正常，dll为native时没有任何声音，但dsound换为302k后native无爆音且可播放视频声音。 但这几种winecfg里测试音频都没声。
+- 根据老虎山所说，winlator比exa的优势在于没有大叔音，爆音基本相同。
+- 关于native和builtin的说明：https://www.hu60.cn/q.php/bbs.topic.103014.html
+
+<!-- - dll必须设置native。如果设置成native,builtin，winlator alsa不会生效，还是会爆音。
+- 不确定是缺解码库，还是dsound.dll被替换过的原因，还是其他原因，在dll设置为native时，游戏内播放视频（本地也存储的是视频格式）时无法播放视频声音，dll设置为native,builtin的时候可以播放视频声音，但winlator alsa就无法生效，出现爆音。 -->
