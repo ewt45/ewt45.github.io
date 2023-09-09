@@ -24,6 +24,22 @@ exagear的apk应使用未添加过xegw的，以防与xegw1.0发生冲突。
 提供一个模版 patcher.apk ([点击下载 密码:7bz1](https://wwqv.lanzout.com/b013cni8b))，下文需要用到的smali，so等文件均从此apk中提取。**此apk不可直接安装使用**
 
 更新历史：
+- 23.09.09: **xegw 2.2**
+    - 特点: 
+    	- 修复键盘只输入unicode，导致部分游戏内无法识别的问题。现在keysym能回退到keycode的优先按keycode处理
+	    - 删除`com.eltechs.axs.configuration.startup.actions.WaitForXClientConnection.startedDrawing()`中对`FAHelper.logXServerFirstConnectEvent(getAppContext());`的调用，以适配hugo的apk（精简apk删除了firebase相关代码，如果调用会闪退）
+	    - xegw的service在手机 通知栏中显示一条固定消息，以防切换到后台后被杀。另外添加一个按钮跳可以转到电池优化界面。
+    - 对应patcher: xegw_2.2_patcher_23.09.09~tx11_23.09.03.apk
+        ```
+        更新文件：
+        com.eltechs.axs.configuration.startup.actions.WaitForXClientConnection
+        com.exagear.datainsert.exagear.QH
+        com.exagear.datainsert.exagear.RR
+        com.termux.x11.CmdEntryPoint
+        com.termux.x11.DialogOptions
+        com.termux.x11.ViewForRendering
+        libXlorie.so
+        ```
 - 23.08.20: **xegw 2.1**
     - 特点：同步termux-x11(08.16)，支持dri3，可以使用xmem修改过的turnip，无需MESA_VK_WSI_DEBUG=sw。
     - 对应patcher: xegw_2.1_patcher_23.08.19~tx11_23.08.16.apk. 变化: libXlorie.so

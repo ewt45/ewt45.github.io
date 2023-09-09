@@ -13,6 +13,22 @@ apk of exagear should be none-xegw, in case what are going to be added inflict w
 here provides a patcher.apk ([download link. password:7bz1](https://wwqv.lanzout.com/b013cni8b)). the smali, so .etc files required in the following steps, should be extracted from it. **this apk is not able to be installed directly**
 
 update histroy:
+- 23.09.09: **xegw 2.2**
+    - 特点: 
+    	- fix: keyboard input will be translated only into unicode keys, which result in some game not recoginzing these keys. Now most regular keys will be tranlsated as linux keycode.
+        - delete `FAHelper` call in `WaitForXClientConnection`, so that hugo apk won't crash after updated to xegw (FAHelper related codes are deleted in hugo's apk.)
+	    - the service of xegw will display a notification in the phone's notification bar, in case that it is killed when switching  to background, and only a black screen is left when switching back. If it doesn't work, there's a button to disable battery optmization.
+    - patcher: xegw_2.2_patcher_23.09.09~tx11_23.09.03.apk
+        ```
+        difference:
+        com.eltechs.axs.configuration.startup.actions.WaitForXClientConnection
+        com.exagear.datainsert.exagear.QH
+        com.exagear.datainsert.exagear.RR
+        com.termux.x11.CmdEntryPoint
+        com.termux.x11.DialogOptions
+        com.termux.x11.ViewForRendering
+        libXlorie.so
+        ```
 - 23.08.20: **xegw 2.1**
     - feature：sync termux-x11(08.16)，support dri3, is able to use turnip patched by xmem, no need of MESA_VK_WSI_DEBUG=sw。
     - patcher: xegw_2.1_patcher_23.08.19~tx11_23.08.16.apk. difference: libXlorie.so
