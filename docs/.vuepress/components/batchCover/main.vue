@@ -192,9 +192,10 @@
 import { ref, reactive, computed, nextTick, watch, onMounted } from "vue";
 import { ElMessage, UploadProps } from "element-plus"; //试试ts，可以引入定义好的数据类型挺好的
 import fetchJsonp from "fetch-jsonp"; //它说只能用require，是怕浅拷贝修改原对象么(好吧是不能加大括号用from) 傻逼代码（对不起是我自己傻逼）
-import  {jsonp}  from "vue-jsonp";
+import {VueJsonp,jsonp} from "vue-jsonp";
 import axios from "axios";
 import { CustomEdit, MyThrottle } from "./1";
+
 /**画布实例 */
 const canvasRef = ref<HTMLCanvasElement>();
 /**用于jsonp的script标签元素实例 */
