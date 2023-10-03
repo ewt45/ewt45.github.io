@@ -10,7 +10,7 @@ tags:
 ## 批量生成b站合集的封面图
 <div class="bg-black text-sm">md测试tw</div>
 
-<batchCover-main />
+<!-- <batchCover-main /> -->
     
 
 <!-- <style scoped>
