@@ -4,8 +4,8 @@ import type { DefaultThemeOptions } from 'vuepress'
 
 export default defineUserConfig({
   lang: 'zh-CN',
-  title: '博客',
-  description: '我的博客',
+  title: "博客",
+  // description: '我的博客',
   pagePatterns: ['**/*.md', '!**/README.md', '!.vuepress', '!node_modules'], //排除readme
   theme: recoTheme({
     style: '@vuepress-reco/style-default',
