@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as o,b as n}from"./app-37899220.js";const c={},d=n("p",null,"#屏蔽reddit的promoted帖子 div>div>div.promotedlink",-1),_=[d];function r(s,i){return t(),o("div",null,_)}const a=e(c,[["render",r],["__file","index.html.vue"]]);export{a as default};

@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-3e276973","path":"/tags/huanjingbianliang/1/","title":"","lang":"zh-CN","frontmatter":{"layout":"Categories"},"headers":[],"git":{},"filePathRelative":null}');export{a as data};

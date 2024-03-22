@@ -1,0 +1,1 @@
+import{_ as n,r as t,o,c,e as a}from"./app-37899220.js";const _={};function r(s,m){const e=t("mktRank-main");return o(),c("div",null,[a(e)])}const i=n(_,[["render",r],["__file","index.html.vue"]]);export{i as default};

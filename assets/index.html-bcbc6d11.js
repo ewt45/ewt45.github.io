@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-a00faaec","path":"/tags/CoordinatorLayout.Behavior/1/","title":"","lang":"zh-CN","frontmatter":{"layout":"Categories"},"headers":[],"git":{},"filePathRelative":null}');export{a as data};

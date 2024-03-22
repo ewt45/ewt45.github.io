@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-d25fbd78","path":"/tags/tupianchuli/1/","title":"","lang":"zh-CN","frontmatter":{"layout":"Categories"},"headers":[],"git":{},"filePathRelative":null}');export{t as data};

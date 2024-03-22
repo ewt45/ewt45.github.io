@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-7b9d1c4f","path":"/tags/Core-X11-Protocol/1/","title":"","lang":"zh-CN","frontmatter":{"layout":"Categories"},"headers":[],"git":{},"filePathRelative":null}');export{t as data};

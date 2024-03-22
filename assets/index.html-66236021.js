@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-38327ea6","path":"/tags/gaotonggpu/1/","title":"","lang":"zh-CN","frontmatter":{"layout":"Categories"},"headers":[],"git":{},"filePathRelative":null}');export{t as data};

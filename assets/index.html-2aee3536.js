@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-06e1313f","path":"/tags/SoftKeyBoard/1/","title":"","lang":"zh-CN","frontmatter":{"layout":"Categories"},"headers":[],"git":{},"filePathRelative":null}');export{t as data};

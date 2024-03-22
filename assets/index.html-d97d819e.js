@@ -1,0 +1,1 @@
+import{_ as t,o as n,c as o,b as e}from"./app-37899220.js";const _={},c=e("p",null,"不知为何，yt登陆 谷歌账号的时候，显示该浏览器不安全。",-1),s=e("p",null,"解决办法是右上角菜单 -> 手机网站。 之前切换成电脑版UA导致的",-1),l=[c,s];function r(a,d){return n(),o("div",null,l)}const f=t(_,[["render",r],["__file","index.html.vue"]]);export{f as default};

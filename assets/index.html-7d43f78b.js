@@ -1,0 +1,1 @@
+const t=JSON.parse('{"key":"v-4b9d6b06","path":"/categories/diaoshi/1/","title":"","lang":"zh-CN","frontmatter":{"layout":"Categories"},"headers":[],"git":{},"filePathRelative":null}');export{t as data};
