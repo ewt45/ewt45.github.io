@@ -22,8 +22,8 @@ update histroy:
         ```
         difference:
         com.eltechs.axs.configuration.startup.actions.WaitForXClientConnection
-        com.exagear.datainsert.exagear.QH
-        com.exagear.datainsert.exagear.RR
+        com.example.datainsert.exagear.QH
+        com.example.datainsert.exagear.RR
         com.termux.x11.CmdEntryPoint
         com.termux.x11.DialogOptions
         com.termux.x11.ViewForRendering

@@ -107,7 +107,8 @@ frameworks/base/services/core/java/com/android/server/inputmethod/InputMethodMan
 
 第三种方案也搜过了，看了所有带`meta-data`和`status`的地方，没有状态栏右上角的那个图标。
 
-万般无奈之下只好搜索`InputMethodManagerService`，(这种一看就是系统层的代码，然后对用户隐藏的，sdk中搜不到，所以想要定位函数或者找函数调用啥的很麻烦。)好在搜到了一篇文章: [android开发浅谈之InputMethodManagerService](https://blog.csdn.net/hfreeman2008/article/details/117963600)。
+万般无奈之下只好搜索`InputMethodManagerService`，(这种一看就是系统层的代码，然后对用户隐藏的，sdk中搜不到，所以想要定位函数或者找函数调用啥的很麻烦。)\
+好在搜到了一篇文章: [android开发浅谈之InputMethodManagerService](https://blog.csdn.net/hfreeman2008/article/details/117963600)。
 
 ![alt text](./res/6.png)
 
