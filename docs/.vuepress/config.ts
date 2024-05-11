@@ -1,8 +1,9 @@
 import { defineUserConfig } from 'vuepress'
 import { recoTheme } from 'vuepress-theme-reco'
-import type { DefaultThemeOptions } from 'vuepress'
+import { viteBundler } from '@vuepress/bundler-vite'
 
 export default defineUserConfig({
+  bundler: viteBundler(),
   lang: 'zh-CN',
   title: "博客",
   // description: '我的博客',
