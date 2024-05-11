@@ -37,7 +37,8 @@ jobs:
       # 如果缓存没有命中，安装依赖
       - name: Install dependencies
         if: steps.yarn-cache.outputs.cache-hit != 'true'
-        run: yarn install && yarn upgrade
+        # yarn 4 需要corepack安装
+        run: corepack enable && yarn install && yarn upgrade
         # run: yarn --frozen-lockfile
 
       # 运行构建脚本
