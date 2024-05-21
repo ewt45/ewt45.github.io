@@ -121,3 +121,9 @@ BOX64_DYNAREC_BIGBLOCK=0
 
 ----
 由于这游戏不支持epic云存档，就没测试legendary的云存档好不好用了（又下了几个体积小的游戏，貌似也都不支持云存档）
+
+## 总结
+- 可以使用linux版的legendary 第三方epic客户端。
+- ubuntu23 需要使用pipx而非pip来安装leendary-gl。
+- 登录epic时会跳转到浏览器，获取一个token，之后浏览器的登录不会退出。
+- 由于需要借助box64，所以修改配置里的wine执行文件为脚本（shebang行指定为shell脚本），来启动box64和wine。
