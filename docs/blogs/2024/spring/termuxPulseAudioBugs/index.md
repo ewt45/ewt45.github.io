@@ -26,3 +26,7 @@ https://github.com/termux/termux-packages/issues/19623
 
 添加环境变量
 `LD_PRELOAD=/system/lib64/libskcodec.so`
+
+----
+貌似系统小更之后bug也更新了，需要新的解决办法
+https://github.com/termux/termux-packages/issues/19623#issuecomment-2123168051
