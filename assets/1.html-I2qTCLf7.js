@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as a}from"./app-TOD777vt.js";const r={};function o(c,n){return t(),a("div")}const s=e(r,[["render",o],["__file","1.html.vue"]]),i=JSON.parse('{"path":"/categories/zuijinrenwu/1.html","title":"","lang":"zh-CN","frontmatter":{"layout":"Categories"},"headers":[],"git":{},"filePathRelative":null}');export{s as comp,i as data};
