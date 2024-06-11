@@ -24,20 +24,10 @@ legendary运行要求：
 - python3.9+
 - pypi packages：requests，（pywebview，setuptools，wheel）
 
-python好说，`sudo apt install python3` 就行了。
 
-pypi就是`pip`，但是 `sudo apt install python3-pip` 安装后，使用pip会报错`error: externally-managed-environment`。难道不能用apt装吗。
-
-(更新pip也没用上) `python3 -m pip install -U pip --user`
-
-换一种方法试试 `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py` 然后运行：`python get-pip.py`。装完提示/usr/bin/pip不存在
-
-检查pip的路径，发现环境变量PATH里有termux的，pip定位到termux环境下的python和pip了。重新export一下发现还是不行。
-
-最终去网上搜了一下，发现是debian12/ubuntu23的问题，换pipx就好了。
-
+使用apt安装依赖。**ubuntu23无法使用`pip`（`error: externally-managed-environment`），参考网上解决方案用了pipx**
 ```sh
-sudo apt install pipx
+sudo apt install python3 pipx
 pipx ensurepath #添加到环境变量
 ```
 
@@ -50,8 +40,10 @@ pipx ensurepath #添加到环境变量
 
 `legendary auth`
 
-会自动跳到浏览器（termux的话自动打开安卓浏览器了）
-登录后复制要求的json字段粘贴即可
+会跳转到浏览器（如果PATH包含了termux的$PREFIX/bin，会自动使用`termux-open-url`打开安卓浏览器）
+
+登录后复制要求的json字段(`authorizationCode`)，粘贴即可。\
+如果之前登录过，那么直接显示json的可能是过期的，粘贴到legendary会登录失败。刷新一下网页就会出现一个新的`authorizationCode`，用新的即可。
 
 **查看游戏库**
 
@@ -109,9 +101,9 @@ wine_executable = /usr/bin/boxandwine.sh
 
 由于是unity游戏，所以最好导出box64的环境变量
 
-`BOX64_DYNAREC_BLEEDING_EDGE=1`
+`BOX64_DYNAREC_BLEEDING_EDGE=1` 和 `BOX64_DYNAREC=0`
 
-这样会在检测到monoBleedingEdge的时候，自动设置
+第一个变量会在检测到monoBleedingEdge的时候，自动设置
 ```
 BOX64_DYNAREC_STRONGMEM=1
 BOX64_DYNAREC_BIGBLOCK=0

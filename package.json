@@ -8,14 +8,13 @@
     "docs:build": "vuepress build docs"
   },
   "dependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.12",
     "axios": "^0.27.2",
     "element-plus": "^2.7.2",
     "fetch-jsonp": "^1.2.1",
     "file-saver": "^2.0.5",
     "vue-jsonp": "^2.0.0",
     "vuepress": "2.0.0-rc.12",
-    "vuepress-theme-reco": "2.0.0-rc.13"
+    "vuepress-theme-reco": "2.0.0-rc.14"
   },
   "packageManager": "yarn@4.2.2+sha512.c44e283c54e02de9d1da8687025b030078c1b9648d2895a65aab8e64225bfb7becba87e1809fc0b4b6778bbd47a1e2ab6ac647de4c5e383a53a7c17db6c3ff4b"
 }
