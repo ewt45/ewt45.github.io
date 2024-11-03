@@ -1,0 +1,1 @@
+import{_ as t,o as e,c as a}from"./app-DJZXwzLR.js";const o={};function n(c,r){return e(),a("div")}const s=t(o,[["render",n],["__file","1.html.vue"]]),_=JSON.parse('{"path":"/tags/FloatingActionButton/1.html","title":"","lang":"zh-CN","frontmatter":{"layout":"Categories"},"headers":[],"git":{},"filePathRelative":null}');export{s as comp,_ as data};

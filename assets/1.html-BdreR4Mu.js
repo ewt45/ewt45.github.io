@@ -1,0 +1,1 @@
+import{_ as t,o as e,c as a}from"./app-DJZXwzLR.js";const c={};function o(r,n){return e(),a("div")}const l=t(c,[["render",o],["__file","1.html.vue"]]),_=JSON.parse('{"path":"/tags/canvas/1.html","title":"","lang":"zh-CN","frontmatter":{"layout":"Categories"},"headers":[],"git":{},"filePathRelative":null}');export{l as comp,_ as data};
