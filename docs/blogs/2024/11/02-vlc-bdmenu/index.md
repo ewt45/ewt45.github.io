@@ -29,7 +29,13 @@ tags:
 安装并运行makemkv, 选择index.bdmv。但是选择出来的视频也没有对应标题。上面有一篇文章说有stream按钮，找不到，发现被移除了。
 
 ----
-用vlc播放，会报错没有java
+用vlc播放
+1. vlc顶栏 - 媒体 - 光盘
+2. 选择 蓝光
+3. 点击 光盘浏览 找到对应文件夹
+4. 点击 播放
+
+报错没有java
 
 尝试导出JAVA_HOME
 `export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64`
@@ -72,7 +78,10 @@ sudo update-alternatives --config javac
 
 成功了！
 
+![alt text](./res/4.png)
+
 ## 总结
 1. makemkv，不确定需不需要
 2. 安装依赖`apt install libbluray-bdj libbluray-bin`
 3. 导出java环境变量 如 `export JAVA_HOME=/usr/lib/jvm/jdk-13`。不能用openjdk，要用oracle的。
+4. 不知为何从应用程序列表启动的vlc，在播放完加载界面后会自动退出。从终端输入`vlc`启动的则不会。

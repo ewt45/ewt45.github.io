@@ -25,7 +25,7 @@ linux上不知道有什么好的播放器，大名鼎鼎的vlc怎么连个字幕
 - [别人写的插件：vlsub](https://github.com/exebetche/vlsub)：可以参考怎么写的。
 - [vlc的lua文档和api](https://github.com/videolan/vlc/blob/3.0.16/share/lua/README.txt)：原来文档放源码里了，官网啥都不写
 - [How can I write a plugin for VLC that responds to play, pause and stop events?](https://stackoverflow.com/questions/15795385)：lua扩展的基本写法
-- [一篇vlc lua扩展的教程](Extending VLC with Lua)
+- [一篇vlc lua扩展的教程 Extending VLC with Lua](http://www.coderholic.com/extending-vlc-with-lua/)
 - [libvlc文档](https://videolan.videolan.me/vlc/group__vlc.html)
 - [官方文档 Hacker Guide/How To Write a Module](https://wiki.videolan.org/Hacker_Guide/How_To_Write_a_Module/)
 - 别人的插件
