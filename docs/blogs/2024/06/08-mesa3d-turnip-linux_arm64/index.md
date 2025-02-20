@@ -3,7 +3,7 @@ date: '2024-6-8 20:20:50'
 title: 编译安卓PRoot用的turnip（linux_arm64架构）
 categories: 
  - android
- - 编译
+ - 技术
 tags:
  - android
  - termux

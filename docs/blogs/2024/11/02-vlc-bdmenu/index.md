@@ -3,7 +3,7 @@ date: '2024-11-02 10:30'
 title: ubuntu 22 使用 vlc 播放 蓝光原盘（本地文件夹）的菜单
 categories: 
  - linux
- - 软件使用
+ - 应用
 tags:
  - vlc
  - linux

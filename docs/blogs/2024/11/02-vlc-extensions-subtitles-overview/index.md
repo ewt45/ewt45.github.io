@@ -3,7 +3,7 @@ date: '2024-11-02 11:22'
 title: vlc 扩展编写 字幕浏览器
 categories: 
  - linux
- - 软件使用
+ - 应用
 tags:
  - vlc
  - linux
