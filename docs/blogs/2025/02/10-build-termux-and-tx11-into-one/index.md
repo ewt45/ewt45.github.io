@@ -1,5 +1,5 @@
 ---
-date: '2025-02-20 10:48'
+date: '2025-02-10 9:22'
 title: 将termux-app与termux-x11合并为一个应用
 categories: 
  - 应用
@@ -8,6 +8,7 @@ categories:
 tags:
  - termux
  - termux-x11
+ - termux-packages
 ---
 
 [[TOC]]
