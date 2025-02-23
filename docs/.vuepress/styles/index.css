@@ -1,40 +1,46 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* 博客中的图片限制一下高度 */
-.theme-reco-default-content img{
-    @apply shadow-md;
-    /* 居中 */
-    @apply mx-auto; 
-    @apply max-h-[300px];
+.theme-reco-md-content img {
+  /* @apply shadow-md; */
+  /* 居中 */
+  /* @apply mx-auto;  */
+  @apply max-h-[300px];
 }
+
 /* .hero-content */
 /* .banner-brand__content{
     @apply backdrop-blur-sm saturate-150 p-4 rounded-full bg-[#ffffff50];
 background-color:rgba(255, 255, 255, 0.3);
 
 } */
-.banner-brand__content h1{
-    text-shadow: -1px -1px 0 rgb(255, 255, 255), 
+.banner-brand__content h1 {
+  text-shadow: -1px -1px 0 rgb(255, 255, 255),
     1px 1px 0 rgb(255, 255, 255),
     -1px 1px 0 rgb(255, 255, 255),
     1px -1px 0 rgb(255, 255, 255);
 
-    /* backdrop-blur是背景模糊，但是用了这个之后导致文字阴影drop-shadow不正常了 */
-    /* @apply backdrop-blur-sm saturate-150 p-2 rounded-md bg-[#ffffff50]; */
-    @apply text-black font-bold drop-shadow-md;
+  /* backdrop-blur是背景模糊，但是用了这个之后导致文字阴影drop-shadow不正常了 */
+  /* @apply backdrop-blur-sm saturate-150 p-2 rounded-md bg-[#ffffff50]; */
+  /* 深色模式的h1颜色会被优先设置为白色，用import粗暴覆盖了... */
+  @apply text-black font-bold drop-shadow-md !important;
 }
-.banner-brand__content p{
-    text-shadow: -0.03rem -0.03rem 0 rgb(255, 255, 255), 
+
+.banner-brand__content p {
+  text-shadow: -0.03rem -0.03rem 0 rgb(255, 255, 255),
     0.03rem 0.03rem 0 rgb(255, 255, 255),
     -0.03rem 0.03rem 0 rgb(255, 255, 255),
     0.03rem -0.03rem 0 rgb(255, 255, 255);
-    /* @apply backdrop-blur-sm saturate-150 p-1 rounded-md bg-[#ffffff50]; */
-    @apply text-black font-bold drop-shadow-md;
+  /* @apply backdrop-blur-sm saturate-150 p-1 rounded-md bg-[#ffffff50]; */
+  @apply text-black font-bold drop-shadow-md;
 }
 
+/* max-width: 1024px; 现在改成1280太宽了，改回1024 */
+/* .home-blog-content {
+    @apply max-w-screen-lg !important;
+}
 
+.theme-reco-md-content {
+    @apply max-w-3xl;
+} */
 
 /* ul {
     @apply list-disc;

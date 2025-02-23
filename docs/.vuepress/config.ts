@@ -43,7 +43,9 @@ export default defineUserConfig({
     //     ]
     //   },
     // ],
-
+    navbar: [
+      { text: '首页', link: '/', icon: 'IconHome' },
+    ],
   }),
 
   open: true,
