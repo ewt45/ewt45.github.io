@@ -1,7 +1,7 @@
 import { defineUserConfig } from 'vuepress'
 import { recoTheme } from 'vuepress-theme-reco'
 import { webpackBundler } from '@vuepress/bundler-webpack'
-import { viteBundler} from '@vuepress/bundler-vite'
+import { viteBundler } from '@vuepress/bundler-vite'
 
 export default defineUserConfig({
   bundler: viteBundler(),
@@ -11,6 +11,9 @@ export default defineUserConfig({
   // description: '我的博客',
   pagePatterns: ['**/*.md', '!**/README.md', '!.vuepress', '!node_modules'], //排除readme
   theme: recoTheme({
+    //.vuepress所在的文件夹如果不是项目根目录，需要在这里指定。否则一些约定行为，比如自动注册layouts中的vue为页面 无法实现
+    docsDir: '/docs',
+
     // reco2 不知道怎么用的左侧栏(成功了，想在哪个页面显示左侧栏就添加一项，字符串为其父目录，数组里最好用对象形式，否则文章frontmatter里的title会默认变成左侧栏的文字。自定义显示文字用原生的sidebar，text自定义，link写相对路径，因为我的index.md 的浏览路径就是父路径，所以没办法加了个./。然后运行发现报错children.map的children为undefined，原来就算没children也要定义一个空的数组
     //还有就是原生的没有样式，reco的写法才有样式)
     series: {
