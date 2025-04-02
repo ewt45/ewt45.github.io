@@ -1,12 +1,5 @@
 <template>
   <div>
-    <!-- <section class="page-404-wrapper">
-      <div class="content">
-        <h1>404</h1>
-        <p>Oops! Page does not exist.</p>
-        <div class="xicon-container">Go Home</div>
-      </div>
-    </section> -->
     <component :is="targetComponent"></component>
   </div>
 </template>

@@ -20,7 +20,7 @@
   },
   "packageManager": "yarn@4.7.0",
   "resolutions": {
-    "lodash": "4.17.21",
+    "lodash": "^4.17.21",
     "prismjs": "^1.30.0",
     "esbuild": "^0.25.0",
     "postcss": "^8.4.31"

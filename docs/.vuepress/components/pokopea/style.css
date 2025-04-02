@@ -1,0 +1,6 @@
+/* 子布局横向居中 */
+.content-width-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
