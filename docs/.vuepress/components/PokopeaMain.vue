@@ -1,34 +1,24 @@
 <template>
-  <el-space fill direction="vertical" :size="24" alignment="center" style=" width:100%; padding:20px;">
-
-    <!-- <el-collapse>
-      <el-collapse-item>
-        <template #title>
-          <div style="width:100%;">筛选条件</div>
-        </template>
-<FilterOptions v-model="filterData" :onSubmit="doFilter" :unmodifiedVideos="videos.orignal" />
-</el-collapse-item>
-</el-collapse> -->
+  <el-space fill direction="vertical" :size="24" alignment="center" style=" width:100%; padding:10px;">
 
     <!-- 工具菜单 -->
     <ToolMenus />
 
-
     <!-- 视频列表 -->
-    <el-row class="video-list">
-      <el-col :xs="12" :sm="12" :md="8" :lg="6" v-for="video in paginatedVideos" :key="video.video_id"
-        class="video-card-col">
+    <el-row :gutter="8" class="video-list">
+      <el-col :xs="12" :sm="12" :md="8" :lg="6" style="padding-bottom: 8px;"
+      v-for="video in paginatedVideos" :key="video.video_id">
         <el-card shadow="hover">
-          <div style="position: relative;">
+          <div class="card-img-wrapper">
             <img :src="`https://i.ytimg.com/vi/${video.video_id}/mqdefault.jpg`" alt="thumbnail" loading="lazy" />
-            <div class="card-bottom-shadow">
+            <div class="card-img-bottom-shadow">
               <el-row>
                 <el-col :span="12">{{ formatDate(video.published_at) }}</el-col>
                 <el-col :span="12" style="text-align: end;">{{ formatDuration(video.duration) }}</el-col>
               </el-row>
             </div>
           </div>
-          <div style="padding: 10px 6px 0px 6px;">
+          <div style="padding: 6px 6px 0px 6px;">
             <h3 :title="video.title">{{ video.title }}</h3>
             <el-text size="small" line-clamp="1" truncated>{{ video.channel_title }}</el-text>
           </div>
@@ -47,21 +37,20 @@
       </el-col>
     </el-row>
 
-    <!-- 分页 -->
+    <!-- 分页 这个宽度怎么这么长。。。 -->
     <div class="width-center">
       <el-pagination v-model:current-page="currentPage" :page-size="pageSize" :total="videos.filtered.length"
-        layout="prev, pager, next" background size="default" />
+        layout="pager" :pager-count="5" background :size="paginationSize" />
     </div>
 
+    <!-- 操作按钮点击后弹窗 -->
+    <ActionDialog v-model="dialogInfo.visible">
+      <ActionYt v-if="dialogInfo.type === 'Yt'" :video_id="dialogInfo.videoData.video_id" />
+      <ActionBili v-else-if="dialogInfo.type === 'Bili'" :video_list="dialogInfo.videoData.zh!" />
+      <ActionSub v-else-if="dialogInfo.type === 'Sub'" :video="dialogInfo.videoData" />
+      <ActionInfo v-else-if="dialogInfo.type === 'Info'" :video="dialogInfo.videoData" />
+    </ActionDialog>
   </el-space>
-
-  <!-- 操作按钮点击后弹窗 -->
-  <ActionDialog v-model="dialogInfo.visible">
-    <ActionYt v-if="dialogInfo.type === 'Yt'" :video_id="dialogInfo.videoData.video_id" />
-    <ActionBili v-else-if="dialogInfo.type === 'Bili'" :video_list="dialogInfo.videoData.zh!" />
-    <ActionSub v-else-if="dialogInfo.type === 'Sub'" :video="dialogInfo.videoData" />
-    <ActionInfo v-else-if="dialogInfo.type === 'Info'" :video="dialogInfo.videoData" />
-  </ActionDialog>
 </template>
 
 <script setup lang="ts">
@@ -115,6 +104,8 @@ const paginatedVideos = computed<YtVideo[]>(() => {
   return videos.value.filtered.slice(start, end)
 });
 
+/** 分页组件的大小 onMount时检测窗口宽度如果过小就改成 small*/
+let paginationSize = ref('default')
 
 // 视频卡片点击事件
 const card_action_click = (name: ActionType, video: YtVideo) => {
@@ -148,6 +139,7 @@ const fetchVideos = async () => {
 
 onMounted(async () => {
   fetchVideos();
+  paginationSize.value = window && window.innerWidth < 768 ? 'small' : 'default'
 });
 
 
@@ -155,20 +147,23 @@ onMounted(async () => {
 
 
 <style scoped>
+@import './pokopea/style.css';
+
 .video-list {
   width: 100%;
 }
 
-.video-card-col {
-  padding: 10px;
-}
-
-.el-card {
+.video-list .el-card {
   --el-card-padding: 0px;
 }
 
+.video-list .el-card:hover,
+.video-list .el-card:focus {
+  box-shadow: var(--el-box-shadow-dark);
+}
+
 /* 视频标题 */
-.el-card h3 {
+.video-list .el-card h3 {
   all: unset;
   font-size: 15px;
   /* margin: 10px 6px 10px 6px; */
@@ -187,23 +182,29 @@ onMounted(async () => {
 
 }
 
-.el-card img {
-  width: 100%;
-  height: auto;
+.video-list .card-img-wrapper {
+  position: relative;
   /* 图片未加载时也会留出高度 */
   aspect-ratio: 16 / 9;
 }
 
-.card-bottom-shadow {
+
+.video-list .el-card img {
+  width: 100%;
+  height: auto;
+
+}
+
+.card-img-bottom-shadow {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 38px;
+  height: 42px;
   font-size: 13px;
   line-height: 18px;
   z-index: 2;
-  padding: 16px 6px 6px 6px;
+  padding: 16px 10px 10px 10px;
   background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
   color: #fff;
   opacity: 1;
@@ -219,13 +220,11 @@ onMounted(async () => {
   justify-content: center;
   transition: box-shadow 0.3s ease;
   /* 添加过渡效果 */
-
 }
-
 
 .card-footer .el-col:hover,
 .card-footer .el-col:active {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--el-box-shadow);
   /* 添加灰色阴影 */
   cursor: pointer;
   /* 鼠标悬停时显示手型 */
@@ -241,6 +240,9 @@ onMounted(async () => {
   max-height: 100%;
   margin: auto;
 }
+
+
+
 
 .width-center {
   display: flex;

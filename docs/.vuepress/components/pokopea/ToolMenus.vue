@@ -2,17 +2,20 @@
   <!-- 父布局是flex-grow:1 填满宽度 -->
 
   <div class="content-width-center toolmenu-root">
-    <div style="display: flex; justify-content: center;">
-      <el-space alignment="center">
-        <el-text>工具栏：</el-text>
-        <el-segmented v-model="currTool" :options="toolOptions" @change="onChange">
-          <template #default="scope: { item: ToolOption }">
-            <el-icon size="20" style="min-width: 40px;">
-              <component :is="scope.item.icon" />
-            </el-icon>
-          </template>
-        </el-segmented>
-      </el-space>
+    <!-- 用space-between 使子布局一个靠左一个靠右。只能有两个子布局 -->
+    <div class="titlebar">
+      <el-text style="font-size: 25px;">狸猫花生</el-text>
+      <ToolDarkMode />
+    </div>
+
+    <div class="content-width-center">
+      <el-segmented v-model="currTool" :options="toolOptions" @change="onChange">
+        <template #default="scope: { item: ToolOption }">
+          <el-icon size="20" style="min-width: 30px;">
+            <component :is="scope.item.icon" />
+          </el-icon>
+        </template>
+      </el-segmented>
     </div>
 
     <!-- 具体的工具内容 -->
@@ -20,7 +23,7 @@
       <!-- <slot :currToolValue="currTool"></slot> -->
 
       <el-collapse-transition>
-        <div style="height: 10px;" v-show="currTool !== 'none'" ></div>
+        <div style="height: 10px;" v-show="currTool !== 'none'"></div>
       </el-collapse-transition>
 
       <el-collapse-transition>
@@ -29,7 +32,7 @@
 
       <!-- 筛选选项 -->
       <el-collapse-transition>
-        <FilterOptions  v-show="currTool === 'filter'" />
+        <FilterOptions v-show="currTool === 'filter'" />
       </el-collapse-transition>
     </div>
 
@@ -49,6 +52,7 @@ import { ToolMenuValue } from './types';
 import { Link, Filter, CircleClose, } from '@element-plus/icons-vue'
 import FilterOptions from './ToolFilter.vue';
 import ToolInfoLink from './ToolInfoLink.vue';
+import ToolDarkMode from './ToolDarkMode.vue';
 type ToolOption = { label: string, value: ToolMenuValue, icon: any }
 
 const currTool = defineModel<ToolMenuValue>({ default: 'none' })
@@ -79,15 +83,25 @@ const onChange = (val: ToolMenuValue) => {
 
 </script>
 <style scoped>
-.content-width-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+@import './style.css';
 
 .toolmenu-root>* {
   flex-grow: 1;
   width: 100%;
 }
 
+.titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.titlebar-left {
+  flex-grow: 1;
+}
+
+.titlebar-right {
+  margin-left: auto;
+}
 </style>

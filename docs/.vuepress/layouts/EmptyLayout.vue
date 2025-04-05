@@ -1,3 +1,17 @@
+<!-- 
+此页面为空页面，可以在只想显示自定义组件时使用
+使用方法： 在md文件中添加 frontmatter. layout设置为EmptyLayout, component设置为要显示的组件名
+e.g.
+---
+date: '2025-03-09'
+title: 狸猫花生
+layout: EmptyLayout
+categories: 
+ - 应用
+component: PokopeaMain
+---
+
+ -->
 <template>
   <div>
     <component :is="targetComponent"></component>

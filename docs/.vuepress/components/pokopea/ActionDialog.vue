@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="visible" class="action-dialog" fullscreen destroy-on-close>
+  <el-dialog v-model="visible" class="ppk-action-dialog" fullscreen destroy-on-close>
     <slot></slot>
   </el-dialog>
 </template>
@@ -15,12 +15,12 @@ const visible = defineModel<Boolean>({ required: true, default: false, })
  所以这部分写成全局样式 -->
 <style>
 /* 点击卡片按钮后显示的弹窗 */
-.action-dialog {
+.ppk-action-dialog {
   display: flex;
   flex-direction: column;
 }
 
-.action-dialog .el-dialog__header {
+.ppk-action-dialog .el-dialog__header {
   /* 确保高度不受下面挤压 */
   flex-shrink: 0;
   margin-bottom: 20px;
@@ -28,7 +28,7 @@ const visible = defineModel<Boolean>({ required: true, default: false, })
 }
 
 
-.action-dialog .el-dialog__body {
+.ppk-action-dialog .el-dialog__body {
   /* 占据剩余空间 */
   flex-grow: 1;
   display: flex;
@@ -39,7 +39,7 @@ const visible = defineModel<Boolean>({ required: true, default: false, })
 此方法需要iframe的父布局是display: flex。本vue内只能设置body为flex
 如果子组件中dialog不是直接在template下则需要手动将其父布局设置为flex 
 */
-.action-dialog iframe {
+.ppk-action-dialog iframe {
   /* 填满宽度。iframe宽高比无所谓，内部视频元素会自动按比例缩放 */
   width: 100%;
   height: auto;

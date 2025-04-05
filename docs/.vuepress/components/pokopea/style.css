@@ -4,3 +4,8 @@
     flex-direction: column;
     align-items: center;
 }
+
+  /* 深色模式下图标颜色 */
+  .dark svg {
+    fill: #bbbbbb;
+  }
