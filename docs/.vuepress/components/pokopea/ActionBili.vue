@@ -23,9 +23,6 @@ let elloading: any = null
 
 onMounted(() => {
   activeBvid.value = prop.video_list.length === 0 ? '' : prop.video_list[0].video_bvid
-
-  //不知道为啥直接在iframe上写v-if不生效。只好挂载到dialog body上了
-  // elloading = ElLoading.service({ target: '.el-dialog__body' })
 })
 
 const onLoad = () => {
@@ -36,6 +33,7 @@ const onLoad = () => {
 }
 
 watch(activeBvid, (val, old) => {
+  //不知道为啥直接在iframe上写v-if不生效。只好挂载到dialog body上了
   if (val !== old && !elloading)
     elloading = ElLoading.service({ target: '.el-dialog__body' })
 })

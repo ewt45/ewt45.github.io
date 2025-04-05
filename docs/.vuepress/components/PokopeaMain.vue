@@ -5,37 +5,39 @@
     <ToolMenus />
 
     <!-- 视频列表 -->
-    <el-row :gutter="8" class="video-list">
-      <el-col :xs="12" :sm="12" :md="8" :lg="6" style="padding-bottom: 8px;"
-      v-for="video in paginatedVideos" :key="video.video_id">
-        <el-card shadow="hover">
-          <div class="card-img-wrapper">
-            <img :src="`https://i.ytimg.com/vi/${video.video_id}/mqdefault.jpg`" alt="thumbnail" loading="lazy" />
-            <div class="card-img-bottom-shadow">
-              <el-row>
-                <el-col :span="12">{{ formatDate(video.published_at) }}</el-col>
-                <el-col :span="12" style="text-align: end;">{{ formatDuration(video.duration) }}</el-col>
-              </el-row>
+    <el-skeleton :rows="5" animated :loading="videos.orignal.length === 0" :throttle="{ leading: 500, initVal: true }">
+      <el-row :gutter="8" class="video-list">
+        <el-col :xs="12" :sm="12" :md="8" :lg="6" style="padding-bottom: 8px;" v-for="video in paginatedVideos"
+          :key="video.video_id">
+          <el-card shadow="hover">
+            <div class="card-img-wrapper">
+              <img :src="`https://i.ytimg.com/vi/${video.video_id}/mqdefault.jpg`" alt="thumbnail" loading="lazy" />
+              <div class="card-img-bottom-shadow">
+                <el-row>
+                  <el-col :span="12">{{ formatDate(video.published_at) }}</el-col>
+                  <el-col :span="12" style="text-align: end;">{{ formatDuration(video.duration) }}</el-col>
+                </el-row>
+              </div>
             </div>
-          </div>
-          <div style="padding: 6px 6px 0px 6px;">
-            <h3 :title="video.title">{{ video.title }}</h3>
-            <el-text size="small" line-clamp="1" truncated>{{ video.channel_title }}</el-text>
-          </div>
-          <!-- 卡片底部可点图标 -->
-          <template #footer>
-            <el-row class="card-footer">
-              <template v-for="action in cardActions" :key="action.name">
-                <el-col :span="6" v-if="is_card_action_display(action, video)"
-                  @click="card_action_click(action.name, video)">
-                  <component :is="action.iconComp"></component>
-                </el-col>
-              </template>
-            </el-row>
-          </template>
-        </el-card>
-      </el-col>
-    </el-row>
+            <div style="padding: 6px 6px 0px 6px;">
+              <h3 :title="video.title">{{ video.title }}</h3>
+              <el-text size="small" line-clamp="1" truncated>{{ video.channel_title }}</el-text>
+            </div>
+            <!-- 卡片底部可点图标 -->
+            <template #footer>
+              <el-row class="card-footer">
+                <template v-for="action in cardActions" :key="action.name">
+                  <el-col :span="6" v-if="is_card_action_display(action, video)"
+                    @click="card_action_click(action.name, video)">
+                    <component :is="action.iconComp"></component>
+                  </el-col>
+                </template>
+              </el-row>
+            </template>
+          </el-card>
+        </el-col>
+      </el-row>
+    </el-skeleton>
 
     <!-- 分页 这个宽度怎么这么长。。。 -->
     <div class="width-center">
