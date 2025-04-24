@@ -14,7 +14,7 @@ tags:
 解决办法：
 参考https://github.com/termux/termux-packages/issues/11208
 
-sles不工作但是aaudio，去配置文件里开启。
+sles不工作但是aaudio正常，去配置文件里开启。
 打开`/data/data/com.termux/files/usr/etc/pulse/default.pa`
 最后一行`#load-module module-aaudio-sink` 前的注释 `#` 删掉。
 
@@ -29,3 +29,7 @@ https://github.com/termux/termux-packages/issues/19623
 ----
 貌似系统小更之后bug也更新了，需要新的解决办法
 https://github.com/termux/termux-packages/issues/19623#issuecomment-2123168051
+
+25.04.24更新：
+libandroid-stub更新了，安装此包后应该不需要手动导出LD_PRELOAD=libskcodec了
+https://github.com/termux/termux-packages/commit/9b6eb0b033cfb02596ca753bf0aad1eee864fa5f
