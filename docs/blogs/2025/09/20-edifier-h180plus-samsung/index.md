@@ -9,6 +9,11 @@ tags:
  - UsbDevice
 ---
 
+:::tip
+项目代码：<https://github.com/ewt45/edifier-h180plus-typec-samsung>\
+可以在 release 下载编译后的 apk
+:::
+
 ## 前言
 想买个typec的有线耳机，结果坑一堆。
 
@@ -129,8 +134,6 @@ USB连接有两种，USB配件和USB主机，看起来我们需要看的USB主�
 
 ![alt text](./res/4.gif)
 
-项目代码：https://github.com/ewt45/edifier-h180plus-typec-samsung\
-可以在 release 下载编译后的 apk
 
 ## 待完善
 - 由于默认都有USB通信权限，就没写申请USB权限的代码了。另一部分原因就是之前系统卡死也与申请权限有些神秘的联系。
