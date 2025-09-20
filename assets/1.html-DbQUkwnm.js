@@ -1,0 +1,1 @@
+import{_ as t,c as e,o as a}from"./app-lSJJfXGm.js";const l={};function o(r,c){return a(),e("div")}const n=t(l,[["render",o],["__file","1.html.vue"]]),s=JSON.parse('{"path":"/tags/bilibili/1.html","title":"","lang":"zh-CN","frontmatter":{"layout":"Categories"},"headers":[],"git":{},"filePathRelative":null}');export{n as comp,s as data};

@@ -1,0 +1,1 @@
+import{_ as t,c as e,o as a}from"./app-lSJJfXGm.js";const c={};function o(r,l){return a(),e("div")}const s=t(c,[["render",o],["__file","1.html.vue"]]),i=JSON.parse('{"path":"/tags/Acitivity/1.html","title":"","lang":"zh-CN","frontmatter":{"layout":"Categories"},"headers":[],"git":{},"filePathRelative":null}');export{s as comp,i as data};

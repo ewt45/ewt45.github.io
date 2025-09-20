@@ -1,0 +1,1 @@
+import{_ as t,c as e,o as a}from"./app-lSJJfXGm.js";const n={};function o(r,c){return a(),e("div")}const l=t(n,[["render",o],["__file","1.html.vue"]]),_=JSON.parse('{"path":"/tags/sanxing/1.html","title":"","lang":"zh-CN","frontmatter":{"layout":"Categories"},"headers":[],"git":{},"filePathRelative":null}');export{l as comp,_ as data};
