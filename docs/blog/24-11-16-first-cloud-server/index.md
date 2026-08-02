@@ -20,7 +20,7 @@ permalink: /blog/2024/11/16-first-cloud-server/index/
 ## 腾讯云
 双十一，买了99一年的轻量应用服务器
 
-![alt text](image.png)
+![alt text](./image.png)
 
 记录一下入口：\
 顶端 - 产品 - 云服务器\
@@ -52,11 +52,11 @@ https://console.cloud.tencent.com/lighthouse/instance/index
 在cloudflare买, 用paypal付款，出现报错 
 > 很抱歉，设置时出现错误。
 
-![alt text](image-1.png)
+![alt text](./image-1.png)
 
 [参考](https://www.v2ex.com/t/762407), 如果f12看到422报错，把手机号的小数点去掉。
 post时确实有个小数点,但表单里没有，应该不影响吧
-![alt text](image-2.png)
+![alt text](./image-2.png)
 
 其他还有说网络不要开代理 / 等几天再试 / paypal转美区 / 换信用卡 / 银联借记卡 开通网上银行和境外支付 / paypal
 - [CloudFlare 付款的正确姿势是什么?](https://www.v2ex.com/t/914985)
@@ -71,11 +71,11 @@ post时确实有个小数点,但表单里没有，应该不影响吧
 
 然后去腾讯云实例 - 域名解析
 
-![alt text](image-4.png)
+![alt text](./image-4.png)
 
 提示未生效。点击跳转到 [云解析DNS](https://console.cloud.tencent.com/cns)
 
-![alt text](image-5.png)
+![alt text](./image-5.png)
 
 发现当前域名的dns服务器是namesilo给的默认的，需要去namesilo里，把这个域名的dns服务器[改成腾讯云提供的](https://cloud.tencent.com/document/product/302/105673) （namesilo里这个叫name server....）
 
@@ -314,7 +314,7 @@ sudo setcap -r /usr/bin/socat
 
 等几个pending之后就好了。
 
-![alt text](image-6.png)
+![alt text](./image-6.png)
 
 
 
@@ -433,9 +433,9 @@ sudo nginx -s reload # 重新加载配置文件
 
 vscode左侧有远程资源管理器，可以保存配置。
 
-![alt text](image-7.png)
+![alt text](./image-7.png)
 
 选择一个配置文件后，还是输入用户名和ip\
 鼠标点击箭头即可连接，列表中还会显示最近打开过的文件夹
 
-![alt text](image-8.png)
+![alt text](./image-8.png)
