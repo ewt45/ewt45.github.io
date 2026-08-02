@@ -1,19 +1,22 @@
-import { defineClientConfig } from '@vuepress/client'
-//element plus 组件全局导入。还有默认/暗黑模式的样式
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css';
-import 'element-plus/theme-chalk/dark/css-vars.css'
+import { defineClientConfig } from 'vuepress/client'
+// import RepoCard from 'vuepress-theme-plume/features/RepoCard.vue'
+// import NpmBadge from 'vuepress-theme-plume/features/NpmBadge.vue'
+// import NpmBadgeGroup from 'vuepress-theme-plume/features/NpmBadgeGroup.vue'
+// import Swiper from 'vuepress-theme-plume/features/Swiper.vue'
 
-import EmptyLayout from './layouts/EmptyLayout.vue'
+import CustomComponent from './theme/components/Custom.vue'
 
-
+// import './theme/styles/custom.css'
 
 export default defineClientConfig({
   enhance({ app }) {
-    // app.component('CustomLayout', CustomLayout)
-    app.use(ElementPlus)
-  },
-  layouts: {
-    EmptyLayout,
+    // built-in components
+    // app.component('RepoCard', RepoCard)
+    // app.component('NpmBadge', NpmBadge)
+    // app.component('NpmBadgeGroup', NpmBadgeGroup)
+    // app.component('Swiper', Swiper) // you should install `swiper`
+
+    // your custom components
+    app.component('CustomComponent', CustomComponent)
   },
 })

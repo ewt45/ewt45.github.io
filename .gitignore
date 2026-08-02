@@ -1,8 +1,8 @@
-.temp
-.cache
-/docs/nonBlog/marioKartTour
-node_modules
-/docs/.vuepress/dist
-/docs/.vuepress/.temp
-/docs/.vuepress/.cache
-.yarn/install-state.gz
+**/node_modules
+
+docs/.vuepress/.cache
+docs/.vuepress/.temp
+docs/.vuepress/dist
+
+.DS_Store
+*.log

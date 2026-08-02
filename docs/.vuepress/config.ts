@@ -1,56 +1,188 @@
-import { defineUserConfig } from 'vuepress'
-import { recoTheme } from 'vuepress-theme-reco'
-import { webpackBundler } from '@vuepress/bundler-webpack'
+/**
+ * 查看以下文档了解主题配置
+ * - @see https://theme-plume.vuejs.press/config/intro/ 配置说明
+ * - @see https://theme-plume.vuejs.press/config/theme/ 主题配置项
+ *
+ * 请注意，对此文件的修改都会重启 vuepress 服务。
+ * 部分配置项的更新没有必要重启 vuepress 服务，建议请在 `.vuepress/config.ts` 文件中配置
+ *
+ * 特别的，请不要在两个配置文件中重复配置相同的项，当前文件的配置项会被覆盖
+ */
+
 import { viteBundler } from '@vuepress/bundler-vite'
+import { defineUserConfig } from 'vuepress'
+import { plumeTheme } from 'vuepress-theme-plume'
 
 export default defineUserConfig({
-  bundler: viteBundler(),
-  // bundler: webpackBundler(),
+  base: '/',
   lang: 'zh-CN',
-  title: "博客",
-  // description: '我的博客',
-  pagePatterns: ['**/*.md', '!**/README.md', '!.vuepress', '!node_modules'], //排除readme
-  theme: recoTheme({
-    //.vuepress所在的文件夹如果不是项目根目录，需要在这里指定。否则一些约定行为，比如自动注册layouts中的vue为页面 无法实现
-    docsDir: '/docs',
-
-    // reco2 不知道怎么用的左侧栏(成功了，想在哪个页面显示左侧栏就添加一项，字符串为其父目录，数组里最好用对象形式，否则文章frontmatter里的title会默认变成左侧栏的文字。自定义显示文字用原生的sidebar，text自定义，link写相对路径，因为我的index.md 的浏览路径就是父路径，所以没办法加了个./。然后运行发现报错children.map的children为undefined，原来就算没children也要定义一个空的数组
-    //还有就是原生的没有样式，reco的写法才有样式)
-    series: {
-      '/blogs/exagearInitContainer': [
-        { text: '主篇', link: './', children: [] }
-        , { text: '旧方法', link: 'detailed', children: [] }
-      ],
-
-      // '/blogs/exagearInitContainer':['./','detailed']
-      // '/blogs/exagearInitContainer':[
-      //   {text:'1',children:['index','detailed']},
-      //   {text:'2',children:['index','detailed']},
-      // ]
+  locales: {
+    '/': {
+      title: '博客',
+      lang: 'zh-CN',
+      description: '',
     },
-    //vuepress2 不知道怎么用的左侧边栏
-    // sidebar:  {
-    //   '/blogs/':[
-    //     '/blogs/blog1','/blogs/blog2'
-    //   ]
+    '/en/': {
+      title: '博客',
+      lang: 'en-US',
+      description: '',
+    },
+  },
+
+  head: [
+    // 配置站点图标
+    ['link', { rel: 'icon', type: 'image/png', href: 'https://theme-plume.vuejs.press/favicon-32x32.png' }],
+  ],
+
+  bundler: viteBundler(),
+  shouldPrefetch: false, // 站点较大，页面数量较多时，不建议启用
+
+  theme: plumeTheme({
+    /* 添加您的部署域名, 有助于 SEO, 生成 sitemap */
+    hostname: 'https://ewt45.github.io/',
+
+    /* 文档仓库配置，用于 editLink */
+    // docsRepo: '',
+    // docsDir: 'docs',
+    // docsBranch: '',
+
+    /* 页内信息 */
+    // editLink: true,
+    // lastUpdated: true,
+    // contributors: true,
+    // changelog: false,
+
+    /**
+     * 编译缓存，加快编译速度
+     * @see https://theme-plume.vuejs.press/config/theme/#cache
+     */
+    cache: 'filesystem',
+
+    /**
+     * 为 markdown 文件自动添加 frontmatter 配置
+     * @see https://theme-plume.vuejs.press/config/theme/#autofrontmatter
+     */
+    autoFrontmatter: {
+      permalink: 'filepath',  // 是否生成永久链接
+    //   createTime: true, // 是否生成创建时间
+    //   title: true,      // 是否生成标题
+    },
+
+    /* 本地搜索, 默认启用 */
+    search: { provider: 'local' },
+
+    /**
+     * Algolia DocSearch
+     * 启用此搜索需要将 本地搜索 search 设置为 false
+     * @see https://theme-plume.vuejs.press/config/plugins/search/#algolia-docsearch
+     */
+    // search: {
+    //   provider: 'algolia',
+    //   appId: '',
+    //   apiKey: '',
+    //   indices: [''],
     // },
-    // type: 'blog',
-    //reco1 右侧栏，当前文章的章节
-    // subSidebar: 'auto',
-    //顶部导航栏
-    // navbar: [
-    //   { text: '首页', link: '/', icon: 'reco-home' },
-    //   {
-    //     text: '应用', link: '/', children: [
-    //       { text: '批量生成b站合集的分p封面图', link: '/blogs/app/batchCover' }
-    //     ]
+
+    /**
+     * Shiki 代码高亮
+     * @see https://theme-plume.vuejs.press/config/plugins/code-highlight/
+     */
+    // codeHighlighter: {
+    //   twoslash: true, // 启用 twoslash
+    //   whitespace: true, // 启用 空格/Tab 高亮
+    //   lineNumbers: true, // 启用行号
+    // },
+
+    /* 文章字数统计、阅读时间，设置为 false 则禁用 */
+    // readingTime: true,
+
+    /**
+     * markdown
+     * @see https://theme-plume.vuejs.press/config/markdown/
+     */
+    // markdown: {
+    //   abbr: true,         // 启用 abbr 语法  *[label]: content
+    //   annotation: true,   // 启用 annotation 语法  [+label]: content
+    //   pdf: true,          // 启用 PDF 嵌入 @[pdf](/xxx.pdf)
+    //   caniuse: true,      // 启用 caniuse 语法  @[caniuse](feature_name)
+    //   plot: true,         // 启用隐秘文本语法 !!xxxx!!
+    //   bilibili: true,     // 启用嵌入 bilibili视频 语法 @[bilibili](bid)
+    //   youtube: true,      // 启用嵌入 youtube视频 语法 @[youtube](video_id)
+    //   artPlayer: true,    // 启用嵌入 artPlayer 本地视频 语法 @[artPlayer](url)
+    //   audioReader: true,  // 启用嵌入音频朗读功能 语法 @[audioReader](url)
+    //   icon: { provider: 'iconify' },        // 启用内置图标语法  ::icon-name::
+    //   table: true,        // 启用表格增强容器语法 ::: table
+    //   codepen: true,      // 启用嵌入 codepen 语法 @[codepen](user/slash)
+    //   replit: true,       // 启用嵌入 replit 语法 @[replit](user/repl-name)
+    //   codeSandbox: true,  // 启用嵌入 codeSandbox 语法 @[codeSandbox](id)
+    //   jsfiddle: true,     // 启用嵌入 jsfiddle 语法 @[jsfiddle](user/id)
+    //   npmTo: true,        // 启用 npm-to 容器  ::: npm-to
+    //   demo: true,         // 启用 demo 容器  ::: demo
+    //   collapse: true,     // 启用折叠容器  ::: collapse
+    //   repl: {             // 启用 代码演示容器
+    //     go: true,         // ::: go-repl
+    //     rust: true,       // ::: rust-repl
+    //     kotlin: true,     // ::: kotlin-repl
+    //     python: true,     // ::: python-repl
     //   },
-    // ],
-    navbar: [
-      { text: '首页', link: '/', icon: 'IconHome' },
-    ],
+    //   math: {             // 启用数学公式
+    //     type: 'katex',
+    //   },
+    //   chartjs: true,      // 启用 chart.js
+    //   echarts: true,      // 启用 ECharts
+    //   mermaid: true,      // 启用 mermaid
+    //   flowchart: true,    // 启用 flowchart
+    //   image: {
+    //     figure: true,     // 启用 figure
+    //     lazyload: true,   // 启用图片懒加载
+    //     mark: true,       // 启用图片标记
+    //     size: true,       // 启用图片大小
+    //   },
+    //   include: true,      // 在 Markdown 文件中导入其他 markdown 文件内容
+    //   imageSize: 'local', // 启用 自动填充 图片宽高属性，避免页面抖动
+    // },
+
+    /**
+     * 水印
+     * @see https://theme-plume.vuejs.press/guide/features/watermark/
+     */
+    // watermark: true,
+
+    /**
+     * 评论 comments
+     * @see https://theme-plume.vuejs.press/guide/features/comments/
+     */
+    // comment: {
+    //   provider: '', // "Artalk" | "Giscus" | "Twikoo" | "Waline"
+    //   comment: true,
+    //   repo: '',
+    //   repoId: '',
+    //   category: '',
+    //   categoryId: '',
+    //   mapping: 'pathname',
+    //   reactionsEnabled: true,
+    //   inputPosition: 'top',
+    // },
+
+    /**
+     * 资源链接替换
+     * @see https://theme-plume.vuejs.press/guide/features/replace-assets/
+     */
+    // replaceAssets: 'https://cdn.example.com',
+
+    /**
+     * 加密功能
+     * @see https://theme-plume.vuejs.press/guide/features/encryption/
+     */
+    // encrypt: {},
+
+    /**
+     * 启用 llmstxt 插件，用于为大语言模型提供更友好的内容
+     * @see https://theme-plume.vuejs.press/guide/features/llmstxt/
+     */
+    // llmstxt: {
+    //   locale: '/',    // 默认仅为主语言生成 llms 友好内容
+    //   locale: 'all',  // 为所有语言生成 llms 友好内容
+    // }
   }),
-
-  open: true,
-
 })

@@ -1,49 +1,38 @@
-<!-- 
-# Hello VuePress
-本地测试：yarn docs:dev
+---
+pageLayout: home
+externalLinkIcon: false
+config:
+  -
+      type: banner
+      banner: /banner.jpg
+      bannerMask:
+        light: 0.2
+        dark: 0.4
+      hero:
+        name: 博客
+        text: 靡不有初，鲜克有终
+        tagline: ''
+        actions:
+          -
+            text: 进入博客
+            link: /blog/
+            theme: brand
 
-安装node.js
-https://nodejs.org/zh-cn/download 
-启用corepack
-`corepack enable` 
-更新
-`yarn set version stable`
-`yarn install`
-升级依赖: 修改package.json中依赖的版本号。然后yarn install
-
-
-::: tip
-这是一个提示
-:::
-
-::: info
-这是一个提示
-:::
-
-::: warning
-这是一个警告
-:::
-
-::: danger
-这是一个危险警告
-:::
-
-::: details
-这是一个 details 标签
-:::
-
-:::: code-group
-::: code-group-item FOO
-```js
-const foo = 'foo'
-```
-:::
-::: code-group-item BAR
-```js
-const bar = 'bar'
-```
-:::
-::::
-
-
--->
+#     type: hero
+#     full: true
+#     forceDark: true
+#     effect: lightning
+#     hero:
+#       name: Theme Plume
+#       tagline: VuePress Next Theme
+#       text: 一个简约的，功能丰富的 vuepress 文档&博客 主题
+#       actions:
+#         -
+#           theme: brand
+#           text: 博客
+#           link: /blog/
+#         -
+#           theme: alt
+#           text: Github →
+#           link: https://github.com/pengzhanbo/vuepress-theme-plume
+---
